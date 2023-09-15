@@ -4,6 +4,7 @@
 float peterX, peterY;
 float peterSize;
 float peterXspd, peterYspd;
+float maxJumpHeight;
 boolean jumped;
 boolean moveLeft;
 boolean moveDown;
@@ -18,6 +19,7 @@ void setup()
   peterXspd = 0;
   peterYspd = 0;
   peterSize = 100;
+  maxJumpHeight = 10;
   jumped = false;
   noStroke();
 }
@@ -29,8 +31,21 @@ void draw()
   fill(#E80918);
   rect(1200,300,300,100);
   fill(#09E825);
+  peterY -= peterYspd;
+  peterX -= peterXspd;  
+  peterY += 0.7;
+  peterY *= 0.98;
+  peterX += 0.7;
+  peterX *= 0.98;
+  
   circle(peterX,peterY,peterSize);
-
+  
+  if( peterY > width-(peterSize/2) )
+  {
+    peterYspd = 0;
+    peterY = 0;
+  }
+  
 }
 
 void keyPressed()
@@ -49,13 +64,12 @@ public void jump()
 {
   if(!jumped)
   {
-   for(int i = 0; i < 10; i++)
+   for(int i = 0; i < maxJumpHeight; i++)
    {
-     peterYspd = 5;
+     peterYspd += 0.5;
    }
    jumped = false;
   }
-  peterY -= peterYspd;
 }
 
 public void left()
@@ -64,7 +78,7 @@ public void left()
   {
    for(int i = 0; i < 10; i++)
    {
-     peterXspd = 5;
+     peterXspd += 0.5;
    }
    moveLeft = false;
   }
@@ -77,7 +91,7 @@ public void down()
   {
    for(int i = 0; i < 10; i++)
    {
-     peterYspd = 5;
+     peterYspd -= 0.5;
    }
    moveDown = false;
   }
@@ -90,7 +104,7 @@ public void right()
   {
    for(int i = 0; i < 10; i++)
    {
-     peterXspd = 5;
+     peterXspd -= 0.5;
    }
    moveRight = false;
   }
