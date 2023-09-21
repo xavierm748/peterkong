@@ -8,6 +8,7 @@ class Peter
   boolean moveDown;
   boolean moveRight;
   
+  
   public Peter()
   {
     peterX = width/2;
@@ -16,6 +17,9 @@ class Peter
     peterYspd = 0;
     peterSize = 100;
     jumped = false;
+    moveLeft = false;
+    moveRight = false;
+    moveDown = false;
     noStroke();
 
     
@@ -30,21 +34,21 @@ class Peter
   {
     circle(peterX,peterY,peterSize);
     
-    if( peterY > height-(peterSize/2) )
+    if( peterY >= height-(peterSize/2) )
       peterYspd = 0;
-    if( peterX > width-(peterSize/2) )
+    if( peterX >= width-(peterSize/2) )
       peterXspd = 0;
-    if( peterY < height+(peterSize/2) )
+    if( peterY <= peterSize/2 )
       peterYspd = 0;
-    if( peterX < width+(peterSize/2) )
+    if( peterX <= peterSize/2 )
       peterXspd = 0;
 
   }
   
   public void movePeter()
   {
-    //peterY += peterYspd;
-    //peterX += peterXspd;  
+    peterY += peterYspd;
+    peterX += peterXspd;  
     peterYspd += 0.7; //gravity
     peterXspd *= 0.98;
   }
@@ -55,25 +59,34 @@ class Peter
   {
     if(!jumped)
     {
-     for(int i = 0; i < 6; i++)
+     for(int i = 0; i < 10; i++)
      {
-       peterYspd -= 3;
+       peterYspd -= 2.5;
      }
      jumped = false;
     }
   }
-  
+  public void down()
+  {
+    if(!moveDown)
+    {
+     for(int i = 0; i < 10; i++)
+     {
+       peterYspd += 1;
+     }
+     moveDown = false;
+    }
+  }
   public void left()
   {
     if(!moveLeft)
     {
      for(int i = 0; i < 10; i++)
      {
-       peterXspd += 0.5;
+       peterXspd -= 0.5;
      }
      moveLeft = false;
     }
-    peterX -= peterXspd;
   }
   
   public void right()
@@ -82,10 +95,9 @@ class Peter
     {
      for(int i = 0; i < 10; i++)
      {
-       peterXspd -= 0.5;
+       peterXspd += 0.5;
      }
      moveRight = false;
     }
-    peterX += peterXspd;
   }
 }

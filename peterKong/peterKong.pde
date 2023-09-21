@@ -7,6 +7,7 @@ Player s;
 void setup()
 {
   fullScreen();
+  //size(1400,1000);
   p = new Peter();
   s = new Player();
 }
@@ -14,24 +15,21 @@ void setup()
 void draw()
 {
   background(0);
-  
   fill(#E80918);
   rect(1200,300,300,100);
   fill(#09E825);
-  
-  p.movePeter();
   p.drawPeter();
-  p.jump();
-  p.left();
-  p.right();
+  p.movePeter();
 }
 
-//void keyPressed()
-//{
-//  if( key == ' ')
-//    jump();
-//  if( key == 'a')
-//    left();    
-//  if( key == 'd')
-//    right();
-//}
+void keyPressed()
+{
+  if( key == ' ')
+    p.jump();
+  if( key == 'a')
+    p.left();    
+  if( key == 'd')
+    p.right();
+  if( key == 's')
+    p.down();
+}
