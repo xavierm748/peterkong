@@ -42,6 +42,8 @@ class Peter
       peterYspd = 0;
     if( peterX <= peterSize/2 )
       peterXspd = 0;
+    if( peterY <= platformXpos+platformSize)
+      peterYspd = 0;
 
   }
   
@@ -53,8 +55,6 @@ class Peter
     peterXspd *= 0.98;
   }
   
-
-
   public void jump()
   {
     if(!jumped)
@@ -66,6 +66,7 @@ class Peter
      jumped = false;
     }
   }
+  
   public void down()
   {
     if(!moveDown)
@@ -77,6 +78,7 @@ class Peter
      moveDown = false;
     }
   }
+  
   public void left()
   {
     if(!moveLeft)

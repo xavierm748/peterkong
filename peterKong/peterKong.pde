@@ -1,6 +1,7 @@
 //Peter Kong
 //Xavier Mclarey
 
+Platform P;
 Peter p;
 Player s;
 
@@ -8,6 +9,7 @@ void setup()
 {
   fullScreen();
   //size(1400,1000);
+  P = new Platform();
   p = new Peter();
   s = new Player();
 }
@@ -15,9 +17,10 @@ void setup()
 void draw()
 {
   background(0);
-  fill(#E80918);
-  rect(1200,300,300,100);
-  fill(#09E825);
+
+  fill(#F50707);
+  P.drawPlatform();
+  fill(#0AF507);
   p.drawPeter();
   p.movePeter();
 }

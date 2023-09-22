@@ -1,16 +1,18 @@
 class Platform
 {
-  float platformX, platformY;
-  float platformSize;
+  public float platformXpos;
+  public float platformYpos;
+  public float platformSize;
   
   public Platform()
   {
-    platformX = width/2;
-    platformY = height-100;
+    platformXpos = width/2;
+    platformYpos = height-100;
+    platformSize = 100;
   }
   
   public void drawPlatform()
   {
-    rect(platformX, platformY, platformSize, platformSize);
+    square(platformXpos, platformYpos, platformSize);
   }
 }
