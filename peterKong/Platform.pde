@@ -6,8 +6,8 @@ class Platform
   
   public Platform()
   {
-    platformXpos = width/2;
-    platformYpos = height-100;
+    platformXpos = (width/2)-50;
+    platformYpos = height/2;
     platformSize = 100;
   }
   
@@ -15,4 +15,12 @@ class Platform
   {
     square(platformXpos, platformYpos, platformSize);
   }
+  
+  public float top(){ return platformYpos; }
+  public float bottom(){ return platformYpos+platformSize; }
+  public float left(){ return platformXpos; }
+  public float right(){ return platformXpos+platformSize; }
+  public float xMiddle(){ return platformXpos+(platformSize/2); }
+  public float yMiddle(){ return platformYpos+(platformSize/2); }
+  
 }
