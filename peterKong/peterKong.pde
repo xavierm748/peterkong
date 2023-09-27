@@ -20,7 +20,7 @@ void draw()
 
   fill(#F50707);
   P.drawPlatform();
-  fill(#0AF507);
+  fill(#12FF1F);
   p.drawPeter();
   p.movePeter();
 }
@@ -30,9 +30,9 @@ void keyPressed()
   if( key == ' ')
     p.jump();
   if( key == 'a')
-    p.left();    
+    p.moveLeft();    
   if( key == 'd')
-    p.right();
+    p.moveRight();
   if( key == 's')
     p.down();
 }

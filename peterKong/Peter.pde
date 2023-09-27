@@ -32,37 +32,7 @@ class Peter
   {
     circle(peterX,peterY,peterSize);
     
-    //checking collision on the walls
-    if( peterY >= height-(peterSize/2) )
-      peterYspd = 0;
-    if( peterX >= width-(peterSize/2) )
-      peterXspd = 0;
-    if( peterY <= peterSize/2 )
-      peterYspd = 0;
-    if( peterX <= peterSize/2 )
-      peterXspd = 0;
-      
-    //checks for collision on the top of the platform
-    if( peterY >= P.top() && peterY <= P.yMiddle() && peterX >= P.left() && peterX <=  P.right() )
-    {
-      peterYspd = 0;
-      peterY = peterY-peterSize;
-    }
-    //checks for collision on the bottom of the platform
-    if( peterY <= P.bottom() && peterY >= P.yMiddle() && peterX <= P.left() && peterX >=  P.right() )
-    {
-      peterYspd = 0;
-    }
-    //checks for collision on the right side of the platform
-    if( peterX >= P.right() && peterX >= P.xMiddle() )
-    {
-      peterXspd = 0;
-    }
-    //checks for collision on the left side of the platform
-    if( peterX <= P.left() && peterX <= P.yMiddle() )
-    {
-      peterXspd = 0;
-    }
+    
   }
   
   public void movePeter()
@@ -73,16 +43,56 @@ class Peter
     peterYspd += 0.7; //gravity
     peterXspd *= 0.98;
     
+    //checking collision on the floor
+    if( peterY >= height-(peterSize/2) )
+    {
+      peterYspd = 0;
+    }
+    //check collision on the right wall
+    if( peterX >= width-(peterSize/2) )
+    {
+      peterYspd = 0;
+    }
+    //check collision on the ceiling
+    if( peterY <= peterSize/2 )
+    {
+      peterYspd = 0;
+    }
+    //check collision on the left wall
+    if( peterX <= peterSize/2 )
+    {
+      peterYspd = 0;
+    }
+      
+    //checks for collision on the top of the platform
+    if( bottom() > P.top() && bottom() <= P.yMiddle() && peterX >= P.left() && peterX <=  P.right() )
+    {
+      peterYspd = 0;
+      peterY = P.top()-peterSize/2;
+    }
+    //checks for collision on the bottom of the platform
+    if( top() <= P.bottom() && top() >= P.yMiddle() && peterX >= P.left() && peterX <=  P.right() )
+    {
+      peterYspd = 0;
+      peterY = P.bottom()+peterSize/2;
+    }
+    //checks for collision on the right side of the platform
+    if( left() <= P.right() && left() >= P.xMiddle() && peterY <= P.top() && peterY >=  P.bottom() )
+    {
+      peterXspd = 0;
+    }
+    //checks for collision on the left side of the platform
+    if( right() <= P.left() && right() <= P.yMiddle() && peterY <= P.top() && peterY >=  P.bottom() )
+    {
+      peterXspd = 0;
+    }
   }
   
   public void jump()
   {
     if(!jumped)
     {
-     for(int i = 0; i < 10; i++)
-     {
-       peterYspd -= 2.5;
-     }
+     peterYspd -= 25;
      jumped = false;
     }
   }
@@ -91,35 +101,32 @@ class Peter
   {
     if(!moveDown)
     {
-     for(int i = 0; i < 10; i++)
-     {
-       peterYspd += 1;
-     }
+     peterYspd += 10;
      moveDown = false;
     }
   }
   
-  public void left()
+  public void moveLeft()
   {
     if(!moveLeft)
     {
-     for(int i = 0; i < 10; i++)
-     {
-       peterXspd -= 0.5;
-     }
+
+     peterXspd -= 5;
      moveLeft = false;
     }
   }
   
-  public void right()
+  public void moveRight()
   {
     if(!moveRight)
     {
-     for(int i = 0; i < 10; i++)
-     {
-       peterXspd += 0.5;
-     }
+     peterXspd += 5;
      moveRight = false;
     }
   }
+    
+  public float top()   { return peterY-peterSize/2; }
+  public float bottom(){ return peterY+peterSize/2; }
+  public float left()  { return peterX-peterSize/2; }
+  public float right() { return peterX+peterSize/2; }
 }
