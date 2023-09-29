@@ -63,7 +63,7 @@ class Peter
     {
       peterXspd = 0;
     }
-      
+    
     //Collision
     for( Platform P: plats )
     {
