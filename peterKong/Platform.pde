@@ -7,9 +7,9 @@ class Platform
   
   public Platform()
   {
-    platformXpos = (width/2)-50;
-    platformYpos = height/2;
-    platformXsize = 100;
+    platformXpos = random(width);
+    platformYpos = random(height);
+    platformXsize = 200;
     platformYsize = 100;
   }
   
@@ -21,7 +21,7 @@ class Platform
   public float top(){ return platformYpos; }
   public float bottom(){ return platformYpos+platformYsize; }
   public float left(){ return platformXpos; }
-  public float right(){ return platformXpos+platformYsize; }
+  public float right(){ return platformXpos+platformXsize; }
   public float xMiddle(){ return platformXpos+(platformXsize/2); }
   public float yMiddle(){ return platformYpos+(platformYsize/2); }
   
