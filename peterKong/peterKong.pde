@@ -5,7 +5,7 @@ Peter p;
 Player s;
 
 ArrayList<Platform> plats = new ArrayList <Platform>();
-float platformCount = 5;
+float platformCount = 10;
 
 void setup()
 {

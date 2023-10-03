@@ -3,6 +3,7 @@ class Peter
   public float peterX, peterY;
   public float peterSize;
   public float peterXspd, peterYspd;
+  PImage peter;
   boolean jumped;
   boolean moveLeft;
   boolean moveDown;
@@ -10,6 +11,8 @@ class Peter
   
   public Peter()
   {
+    imageMode(CENTER);
+    
     peterX = width/2;
     peterY = 200;
     peterXspd = 0;
@@ -19,6 +22,9 @@ class Peter
     moveLeft = false;
     moveRight = false;
     moveDown = false;
+    
+    peter = loadImage("peter_griffin-removebg-preview.png");
+    peter.resize(int(peterSize-25),0);
     noStroke();
     
     //println("xPos: "+peterX);
@@ -30,9 +36,7 @@ class Peter
   
   public void drawPeter()
   {
-    circle(peterX,peterY,peterSize);
-    
-    
+    image(peter,peterX,peterY);
   }
   
   public void movePeter()
@@ -80,14 +84,18 @@ class Peter
         peterY = P.bottom()+peterSize/2;
       }
       //checks for collision on the right side of the platform
-      if( left() <= P.right() && left() >= P.xMiddle() && peterY <= P.top() && peterY >=  P.bottom() )
+      if( left() < P.right() && left() >= P.xMiddle() && peterY <= P.bottom() && peterY >=  P.top() )
       {
         peterXspd = 0;
+        peterX = P.right()+peterSize/2;
+        println("left");
       }
       //checks for collision on the left side of the platform
-      if( right() <= P.left() && right() <= P.yMiddle() && peterY <= P.top() && peterY >=  P.bottom() )
+      if( right() > P.left() && right() <= P.xMiddle() && peterY <= P.bottom() && peterY >=  P.top() )
       {
         peterXspd = 0;
+        peterX = P.left()-peterSize/2;
+        println("right");
       }
     }
   }
@@ -96,7 +104,7 @@ class Peter
   {
     if(!jumped)
     {
-     peterYspd -= 25;
+     peterYspd -= 15;
      jumped = false;
     }
   }
@@ -105,7 +113,7 @@ class Peter
   {
     if(!moveDown)
     {
-     peterYspd += 10;
+     peterYspd += 25;
      moveDown = false;
     }
   }
