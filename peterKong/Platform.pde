@@ -9,7 +9,7 @@ class Platform
   {
     platformXpos = random(width);
     platformYpos = random(height);
-    platformXsize = 200;
+    platformXsize = 400;
     platformYsize = 100;
   }
   

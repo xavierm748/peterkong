@@ -23,15 +23,14 @@ void draw()
   background(0);
 
   fill(#F50707);
-  
   for(Platform pl: plats)
     pl.drawPlatform();
-  //P.drawPlatform();
+  
   fill(#4003FF);
   p.drawPeter();
   p.movePeter();
 }
-
+ 
 void keyPressed()
 {
   if( key == ' ')

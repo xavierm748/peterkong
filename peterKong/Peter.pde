@@ -3,6 +3,7 @@ class Peter
   public float peterX, peterY;
   public float peterSize;
   public float peterXspd, peterYspd;
+  public int jumpCounter;
   PImage peter;
   boolean jumped;
   boolean moveLeft;
@@ -52,16 +53,13 @@ class Peter
     {
       peterYspd = 0;
     }
+    
     //check collision on the right wall
     if( peterX >= width-(peterSize/2) )
     {
       peterXspd = 0;
     }
-    //check collision on the ceiling
-    if( peterY < peterSize/2 )
-    {
-      peterYspd = 0;
-    }
+    
     //check collision on the left wall
     if( peterX <= peterSize/2 )
     {
@@ -88,23 +86,23 @@ class Peter
       {
         peterXspd = 0;
         peterX = P.right()+peterSize/2;
-        println("left");
       }
       //checks for collision on the left side of the platform
       if( right() > P.left() && right() <= P.xMiddle() && peterY <= P.bottom() && peterY >=  P.top() )
       {
         peterXspd = 0;
         peterX = P.left()-peterSize/2;
-        println("right");
       }
     }
   }
   
   public void jump()
-  {
-    if(!jumped)
+  {     
+    jumpCounter += 1;
+    if(!jumped && jumpCounter > 0)
     {
-     peterYspd -= 15;
+     peterYspd -= 17;
+     jumpCounter = 0;
      jumped = false;
     }
   }
