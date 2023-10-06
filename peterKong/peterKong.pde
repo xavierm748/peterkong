@@ -41,4 +41,9 @@ void keyPressed()
     p.moveRight();
   if( key == 's')
     p.down();
+  if( key == ' ' && key == 's')
+    p.diagonalLeft();
+  if( key == ' ' && key == 'd')
+    p.diagonalRight();
+  
 }

@@ -9,6 +9,8 @@ class Peter
   boolean moveLeft;
   boolean moveDown;
   boolean moveRight;
+  boolean diagonalLeft;
+  boolean diagonalRight;
   
   public Peter()
   {
@@ -23,6 +25,8 @@ class Peter
     moveLeft = false;
     moveRight = false;
     moveDown = false;
+    diagonalLeft = false;
+    diagonalRight = false;
     
     peter = loadImage("peter_griffin-removebg-preview.png");
     peter.resize(int(peterSize-25),0);
@@ -129,6 +133,23 @@ class Peter
   public void moveRight()
   {
     if(!moveRight)
+    {
+     peterXspd += 5;
+     moveRight = false;
+    }
+  }
+  public void diagonalLeft()
+  {
+    if(!diagonalLeft)
+    {
+     peterXspd -= 5;
+     peterYspd -= 17;
+     diagonalLeft = false;
+    }
+  }
+  public void diagonalRight()
+  {
+    if(!diagonalRight)
     {
      peterXspd += 5;
      moveRight = false;
