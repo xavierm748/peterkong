@@ -2,17 +2,17 @@
 //Xavier Mclarey
 
 Peter p;
-Player s;
+Stewie s;
 
 ArrayList<Platform> plats = new ArrayList <Platform>();
-float platformCount = 10;
+float platformCount = 6;
 
 void setup()
 {
   fullScreen();
   //size(1400,1000);
   p = new Peter();
-  s = new Player();
+  s = new Stewie();
   
   for(int i = 0; i < platformCount  ; i++)
     plats.add( new Platform() );
@@ -27,7 +27,10 @@ void draw()
     pl.drawPlatform();
   
   fill(#4003FF);
+  push();
   p.drawPeter();
+  s.drawStewie();
+  pop();
   p.movePeter();
 }
  

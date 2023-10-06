@@ -14,8 +14,6 @@ class Peter
   
   public Peter()
   {
-    imageMode(CENTER);
-    
     peterX = width/2;
     peterY = 200;
     peterXspd = 0;
@@ -31,16 +29,12 @@ class Peter
     peter = loadImage("peter_griffin-removebg-preview.png");
     peter.resize(int(peterSize-25),0);
     noStroke();
-    
-    //println("xPos: "+peterX);
-    //println("yPos: "+peterY);
-    //println("peterXspd: "+peterXspd);
-    //println("peterYspd: "+peterYspd);
 
   }
   
   public void drawPeter()
   {
+    imageMode(CENTER);
     image(peter,peterX,peterY);
   }
   

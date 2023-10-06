@@ -4,18 +4,23 @@ class Platform
   public float platformYpos;
   public float platformXsize;
   public float platformYsize;
+  PImage platform;
   
   public Platform()
   {
-    platformXpos = random(width);
-    platformYpos = random(height);
-    platformXsize = 400;
+    platformXsize = 500;
     platformYsize = 100;
+    platformXpos = random(width-platformXsize);
+    platformYpos = random(height-platformYsize);
+    
+    platform = loadImage("donkeyKongPlatform.png");
+    platform.resize(int(platformXsize),0);
   }
   
   public void drawPlatform()
   {
-    rect(platformXpos, platformYpos, platformXsize, platformYsize);
+    image(platform, platformXpos, platformYpos);
+    //rect(platformXpos, platformYpos, platformXsize, platformYsize);
   }
 
   public float top()     { return platformYpos; }
