@@ -7,6 +7,7 @@ class Stewie
   boolean moveLeft;
   boolean moveDown;
   boolean moveRight;
+  PImage stewie;
   
   public Stewie()
   {
@@ -19,10 +20,13 @@ class Stewie
     moveLeft = false;
     moveRight = false;
     moveDown = false;
+    
+    stewie = loadImage("stewieGriffin.png");
+    stewie.resize(int(stewieSize),0);
   }
   
   void drawStewie()
   {
-    circle(stewieSize, stewieX, stewieY);
+    image(stewie, stewieX, stewieY);
   }
 }

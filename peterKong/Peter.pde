@@ -29,6 +29,8 @@ class Peter
     peter = loadImage("peter_griffin-removebg-preview.png");
     peter.resize(int(peterSize-25),0);
     noStroke();
+    
+    
 
   }
   
@@ -44,12 +46,13 @@ class Peter
     peterY += peterYspd;
     peterX += peterXspd;  
     peterYspd += 0.7; //gravity
-    peterXspd *= 0.98;
+    peterXspd *= 0.95;
     
     //checking collision on the floor
     if( peterY >= height-(peterSize/2) )
     {
       peterYspd = 0;
+      jumped = false;
     }
     
     //check collision on the right wall
@@ -64,6 +67,13 @@ class Peter
       peterXspd = 0;
     }
     
+    if( peterYspd > 2 )
+      jumped = true;
+    if( peterXspd >= 3 )
+      moveRight = false;
+    if( peterXspd <= -3 )
+      moveLeft = false;
+    
     //Collision
     for( Platform P: plats )
     {
@@ -72,6 +82,7 @@ class Peter
       {
         peterYspd = 0;
         peterY = P.top()-peterSize/2;
+        jumped = false;
       }
       //checks for collision on the bottom of the platform
       if( top() < P.bottom() && top() >= P.yMiddle() && peterX >= P.left() && peterX <=  P.right() )
@@ -96,12 +107,10 @@ class Peter
   
   public void jump()
   {     
-    jumpCounter += 1;
-    if(!jumped && jumpCounter > 0)
+    if(!jumped)
     {
      peterYspd -= 17;
-     jumpCounter = 0;
-     jumped = false;
+     jumped = true;
     }
   }
   
@@ -111,42 +120,6 @@ class Peter
     {
      peterYspd += 25;
      moveDown = false;
-    }
-  }
-  
-  public void moveLeft()
-  {
-    if(!moveLeft)
-    {
-
-     peterXspd -= 5;
-     moveLeft = false;
-    }
-  }
-  
-  public void moveRight()
-  {
-    if(!moveRight)
-    {
-     peterXspd += 5;
-     moveRight = false;
-    }
-  }
-  public void diagonalLeft()
-  {
-    if(!diagonalLeft)
-    {
-     peterXspd -= 5;
-     peterYspd -= 17;
-     diagonalLeft = false;
-    }
-  }
-  public void diagonalRight()
-  {
-    if(!diagonalRight)
-    {
-     peterXspd += 5;
-     moveRight = false;
     }
   }
     

@@ -32,6 +32,18 @@ void draw()
   s.drawStewie();
   pop();
   p.movePeter();
+  
+  if(p.moveRight)
+  {
+    p.peterXspd = 6;
+    p.moveRight = false;
+  }
+  if(p.moveLeft)
+  {
+    p.peterXspd = -6;
+    p.moveLeft = false;
+  }
+  println("X speed: " + p.peterXspd);
 }
  
 void keyPressed()
@@ -39,14 +51,17 @@ void keyPressed()
   if( key == ' ')
     p.jump();
   if( key == 'a')
-    p.moveLeft();    
+    p.moveLeft = true;    
   if( key == 'd')
-    p.moveRight();
+    p.moveRight = true;
   if( key == 's')
     p.down();
-  if( key == ' ' && key == 's')
-    p.diagonalLeft();
-  if( key == ' ' && key == 'd')
-    p.diagonalRight();
-  
+}
+
+void keyReleased()
+{
+  if( key == 'a')
+    p.moveLeft = false;    
+  if( key == 'd')
+    p.moveRight = false;
 }
