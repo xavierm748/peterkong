@@ -6,6 +6,7 @@ Stewie s;
 
 ArrayList<Platform> plats = new ArrayList <Platform>();
 float platformCount = 6;
+float platformPos = 0;
 
 void setup()
 {
@@ -15,7 +16,7 @@ void setup()
   s = new Stewie();
   
   for(int i = 0; i < platformCount  ; i++)
-    plats.add( new Platform() );
+    plats.add( new Platform(platformPos) );
 }
 
 void draw()
@@ -30,24 +31,26 @@ void draw()
   push();
   p.drawPeter();
   s.drawStewie();
+  s.moveStewie();
   pop();
   p.movePeter();
   
   if(p.moveRight)
   {
-    p.peterXspd = 6;
+    p.peterXspd = 5;
     p.moveRight = false;
   }
   if(p.moveLeft)
   {
-    p.peterXspd = -6;
+    p.peterXspd = -5;
     p.moveLeft = false;
   }
   println("X speed: " + p.peterXspd);
 }
- 
+
 void keyPressed()
 {
+  //Movement For Peter
   if( key == ' ')
     p.jump();
   if( key == 'a')
@@ -55,6 +58,20 @@ void keyPressed()
   if( key == 'd')
     p.moveRight = true;
   if( key == 's')
+    p.down();
+    
+  //Movement For Stewie
+  if( key == CODED)
+    if( keyCode == UP)
+    p.jump();
+  if( key == CODED)
+    if( keyCode == CODED)
+    p.moveLeft = true;    
+  if( key == CODED)
+    if( keyCode == CODED)
+    p.moveRight = true;
+  if( key == CODED)
+    if( keyCode == DOWN)
     p.down();
 }
 
