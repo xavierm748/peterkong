@@ -9,11 +9,10 @@ class Peter
   boolean moveLeft;
   boolean moveDown;
   boolean moveRight;
-  boolean diagonalLeft;
-  boolean diagonalRight;
-  
+
   public Peter()
   {
+    //setting initial values ot every variable
     peterX = width/2;
     peterY = 200;
     peterXspd = 0;
@@ -23,9 +22,8 @@ class Peter
     moveLeft = false;
     moveRight = false;
     moveDown = false;
-    diagonalLeft = false;
-    diagonalRight = false;
     
+    //loads and resizes the image
     peter = loadImage("peter_griffin-removebg-preview.png");
     peter.resize(int(peterSize-25),0);
     noStroke();
@@ -36,6 +34,7 @@ class Peter
   
   public void drawPeter()
   {
+    //this centers the image and draws the image
     imageMode(CENTER);
     image(peter,peterX,peterY);
   }
@@ -67,10 +66,13 @@ class Peter
       peterXspd = 0;
     }
     
+    //this makes it to where you can not jump mid-air
     if( peterYspd > 2 )
       jumped = true;
+    //this makes it to where the speed does not infinitly increase
     if( peterXspd >= 3 )
       moveRight = false;
+    //this makes it to where the speed does not infinitly decrease
     if( peterXspd <= -3 )
       moveLeft = false;
     
@@ -105,6 +107,7 @@ class Peter
     }
   }
   
+  //makes peter jump
   public void jump()
   {     
     if(!jumped)
@@ -114,6 +117,7 @@ class Peter
     }
   }
   
+  //makes peter smash(not a hulk pun)
   public void down()
   {
     if(!moveDown)

@@ -3,6 +3,7 @@
 
 Peter p;
 Stewie s;
+StartScreen S;
 
 ArrayList<Platform> plats = new ArrayList <Platform>();
 float platformCount = 6;
@@ -14,6 +15,7 @@ void setup()
   //size(1400,1000);
   p = new Peter();
   s = new Stewie();
+  S = new StartScreen();
   
   for(int i = 0; i < platformCount  ; i++)
     plats.add( new Platform(platformPos) );
@@ -22,30 +24,40 @@ void setup()
 void draw()
 {
   background(0);
-
+  
   fill(#F50707);
   for(Platform pl: plats)
     pl.drawPlatform();
   
-  fill(#4003FF);
-  push();
-  p.drawPeter();
-  s.drawStewie();
-  s.moveStewie();
-  pop();
-  p.movePeter();
+  if(!S.gameStarted)
+  {
+    fill(#4003FF);
+    S.drawTitle();
+    S.drawStartbutton();
+    push();
+    p.drawPeter();
+    s.drawStewie();
+    s.drawTricycle();
+    s.moveStewie();
+    pop();
+    p.movePeter();
+  }
   
+  //makes peter move right
   if(p.moveRight)
   {
     p.peterXspd = 5;
     p.moveRight = false;
   }
+  //makes peter move left
   if(p.moveLeft)
   {
     p.peterXspd = -5;
     p.moveLeft = false;
   }
-  println("X speed: " + p.peterXspd);
+  //debugging
+  println("Peter X speed: " + p.peterXspd);
+  println("positions of the platforms: " + platformPos);
 }
 
 void keyPressed()
@@ -59,24 +71,11 @@ void keyPressed()
     p.moveRight = true;
   if( key == 's')
     p.down();
-    
-  //Movement For Stewie
-  if( key == CODED)
-    if( keyCode == UP)
-    p.jump();
-  if( key == CODED)
-    if( keyCode == CODED)
-    p.moveLeft = true;    
-  if( key == CODED)
-    if( keyCode == CODED)
-    p.moveRight = true;
-  if( key == CODED)
-    if( keyCode == DOWN)
-    p.down();
 }
 
 void keyReleased()
 {
+  //this makes te speed stop increasing
   if( key == 'a')
     p.moveLeft = false;    
   if( key == 'd')
