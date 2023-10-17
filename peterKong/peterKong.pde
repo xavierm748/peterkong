@@ -24,16 +24,19 @@ void setup()
 void draw()
 {
   background(0);
-  
   fill(#F50707);
-  for(Platform pl: plats)
-    pl.drawPlatform();
   
-  if(!S.gameStarted)
+  S.drawTitle();
+  S.drawStartbutton();
+
+    
+  if(S.gameStarted)
   {
+    background(0);
+    for(Platform pl: plats)
+      pl.drawPlatform();
+
     fill(#4003FF);
-    S.drawTitle();
-    S.drawStartbutton();
     push();
     p.drawPeter();
     s.drawStewie();
@@ -42,7 +45,7 @@ void draw()
     pop();
     p.movePeter();
   }
-  
+      
   //makes peter move right
   if(p.moveRight)
   {
@@ -56,8 +59,16 @@ void draw()
     p.moveLeft = false;
   }
   //debugging
-  println("Peter X speed: " + p.peterXspd);
-  println("positions of the platforms: " + platformPos);
+  //println("button left: ", S.left());
+  //println("button right: ", S.right());
+  //println("button top: ", S.top());
+  //println("button bottom: ", S.bottom());
+}
+
+void mousePressed()
+{
+  if( mouseX >= S.left() && mouseX <= S.right() && mouseY >= S.bottom() && mouseY <= S.top() )
+    S.gameStarted = true;
 }
 
 void keyPressed()
