@@ -28,8 +28,6 @@ class Peter
     peter.resize(int(peterSize-25),0);
     noStroke();
     
-    
-
   }
   
   public void drawPeter()

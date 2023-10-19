@@ -1,18 +1,18 @@
 class Platform
 {
   public float platformXpos;
-  public float platformYpos;
+  public float platformYpos = 200;
   public float platformXsize;
   public float platformYsize;
   PImage platform;
   
-  public Platform(float platformDest)
+  public Platform(float x, float y)
   {
     //setting the initial values of every variable
     platformXsize = 500;
     platformYsize = 100;
-    platformXpos = platformDest;
-    platformYpos = platformDest;
+    platformXpos = x;
+    platformYpos += y;
     
     //loading and resizing the png for the platforms
     platform = loadImage("donkeyKongPlatform.png");

@@ -2,23 +2,22 @@
 //Xavier Mclarey
 
 Peter p;
-Stewie s;
+kong s;
 StartScreen S;
 
 ArrayList<Platform> plats = new ArrayList <Platform>();
 float platformCount = 6;
-float platformPos = 0;
 
 void setup()
 {
   fullScreen();
   //size(1400,1000);
   p = new Peter();
-  s = new Stewie();
+  s = new kong();
   S = new StartScreen();
   
   for(int i = 0; i < platformCount  ; i++)
-    plats.add( new Platform(platformPos) );
+    plats.add( new Platform(150*i, 150*i) );
 }
 
 void draw()
@@ -29,7 +28,6 @@ void draw()
   S.drawTitle();
   S.drawStartbutton();
 
-    
   if(S.gameStarted)
   {
     background(0);
@@ -39,9 +37,10 @@ void draw()
     fill(#4003FF);
     push();
     p.drawPeter();
-    s.drawStewie();
-    s.drawTricycle();
-    s.moveStewie();
+    s.drawkong();
+    s.drawBarrel();
+    s.movekong();
+    s.moveBarrel();
     pop();
     p.movePeter();
   }
@@ -59,15 +58,12 @@ void draw()
     p.moveLeft = false;
   }
   //debugging
-  //println("button left: ", S.left());
-  //println("button right: ", S.right());
-  //println("button top: ", S.top());
-  //println("button bottom: ", S.bottom());
+  
 }
 
 void mousePressed()
 {
-  if( mouseX >= S.left() && mouseX <= S.right() && mouseY >= S.bottom() && mouseY <= S.top() )
+  if( mouseX >= S.left() && mouseX <= S.right() && mouseY >= S.top() && mouseY <= S.bottom() )
     S.gameStarted = true;
 }
 
@@ -82,6 +78,7 @@ void keyPressed()
     p.moveRight = true;
   if( key == 's')
     p.down();
+    
 }
 
 void keyReleased()
