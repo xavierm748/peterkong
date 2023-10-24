@@ -3,6 +3,7 @@ class Peter
   public float peterX, peterY;
   public float peterSize;
   public float peterXspd, peterYspd;
+  public float health;
   public int jumpCounter;
   PImage peter;
   boolean jumped;
@@ -18,6 +19,7 @@ class Peter
     peterXspd = 0;
     peterYspd = 0;
     peterSize = 100;
+    health = 200;
     jumped = false;
     moveLeft = false;
     moveRight = false;

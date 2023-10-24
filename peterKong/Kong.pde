@@ -48,9 +48,6 @@ class kong
     //moves kong
     kongY += kongYspd;
     kongYspd += 0.7; //gravity
-    //moves the barrel
-    barrelY += kongYspd;
-    barrelYspd += 0.7; //gravity
     
     for( Platform P: plats )
     {
@@ -79,6 +76,32 @@ class kong
   {
     barrelX += barrelXspd;
     barrelXspd += 0.7;
+    
+    if( barrelX >= width-(kongSize/2) || barrelX <= 0+(kongSize/2) )
+      barrelXspd = -barrelXspd;
+    
+      
+    //collision on the barrel hitting peter
+    //checks for collision on the top of peter
+    if( barrelBottom() > p.top() && barrelX >= p.left() && barrelX <=  p.right() )
+    {
+      p.health -= 10;
+    }
+    //checks for collision on the bottom of peter
+    if( barrelTop() < p.bottom() && barrelX >= p.left() && barrelX <=  p.right() )
+    {
+      p.health -= 10;
+    }
+    //checks for collision on the right side of peter
+    if( barrelLeft() < p.right() && barrelY <= p.bottom() && barrelY >=  p.top() )
+    {
+      p.health -= 10;
+    }
+    //checks for collision on the left side of peter
+    if( barrelRight() > p.left() && barrelY <= p.bottom() && barrelY >=  p.top() )
+    {
+      p.health -= 10;
+    }
   }
   
   //for kong

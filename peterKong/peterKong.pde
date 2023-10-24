@@ -2,8 +2,9 @@
 //Xavier Mclarey
 
 Peter p;
-kong s;
-StartScreen S;
+kong k;
+HUD h;
+StartScreen s;
 
 ArrayList<Platform> plats = new ArrayList <Platform>();
 float platformCount = 6;
@@ -13,8 +14,9 @@ void setup()
   fullScreen();
   //size(1400,1000);
   p = new Peter();
-  s = new kong();
-  S = new StartScreen();
+  k = new kong();
+  h = new HUD();
+  s = new StartScreen();
   
   for(int i = 0; i < platformCount  ; i++)
     plats.add( new Platform(150*i, 150*i) );
@@ -25,10 +27,10 @@ void draw()
   background(0);
   fill(#F50707);
   
-  S.drawTitle();
-  S.drawStartbutton();
+  s.drawTitle();
+  s.drawStartbutton();
 
-  if(S.gameStarted)
+  if(s.gameStarted)
   {
     background(0);
     for(Platform pl: plats)
@@ -37,12 +39,13 @@ void draw()
     fill(#4003FF);
     push();
     p.drawPeter();
-    s.drawkong();
-    s.drawBarrel();
-    s.movekong();
-    s.moveBarrel();
+    k.drawkong();
+    k.drawBarrel();
+    k.movekong();
+    k.moveBarrel();
     pop();
     p.movePeter();
+    h.healthBar();
   }
       
   //makes peter move right
@@ -63,8 +66,8 @@ void draw()
 
 void mousePressed()
 {
-  if( mouseX >= S.left() && mouseX <= S.right() && mouseY >= S.top() && mouseY <= S.bottom() )
-    S.gameStarted = true;
+  if( mouseX >= s.left() && mouseX <= s.right() && mouseY >= s.top() && mouseY <= s.bottom() )
+    s.gameStarted = true;
 }
 
 void keyPressed()
