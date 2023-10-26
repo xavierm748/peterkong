@@ -29,8 +29,11 @@ void draw()
   
   s.drawTitle();
   s.drawStartbutton();
+  
+  if(p.health <= 0)
+    p.hasHealth = false;
 
-  if(s.gameStarted)
+  if(s.gameStarted && p.hasHealth)
   {
     background(0);
     for(Platform pl: plats)
@@ -47,7 +50,12 @@ void draw()
     p.movePeter();
     h.healthBar();
   }
-      
+  else if(!p.hasHealth)
+  {
+   h.gameOver();
+   
+   s.gameStarted = false;
+  }
   //makes peter move right
   if(p.moveRight)
   {

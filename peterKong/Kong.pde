@@ -22,11 +22,11 @@ class kong
     kongYspd = 0;
     kongSize = 140;
     barrelX = 100;
-    barrelY = 50;
+    barrelY = 200;
     barrelXspd = 0;
     barrelYspd = 0;
     barrelSize = 80;
-        
+    
     //loading the image and resizing the image
     kong = loadImage("kong.png");
     kong.resize(int(kongSize),0);
@@ -74,34 +74,17 @@ class kong
   
   void moveBarrel()
   {
-    barrelX += barrelXspd;
-    barrelXspd += 0.7;
+    //barrelX += barrelXspd;
+    //barrelXspd += 0.7;
     
+    //makes it to where the barrel bounces off of either left or right wall
     if( barrelX >= width-(kongSize/2) || barrelX <= 0+(kongSize/2) )
       barrelXspd = -barrelXspd;
     
-      
     //collision on the barrel hitting peter
-    //checks for collision on the top of peter
-    if( barrelBottom() > p.top() && barrelX >= p.left() && barrelX <=  p.right() )
-    {
+    if(  dist( p.peterX, p.peterY, barrelX, barrelY ) <= p.peterSize/2 )
       p.health -= 10;
-    }
-    //checks for collision on the bottom of peter
-    if( barrelTop() < p.bottom() && barrelX >= p.left() && barrelX <=  p.right() )
-    {
-      p.health -= 10;
-    }
-    //checks for collision on the right side of peter
-    if( barrelLeft() < p.right() && barrelY <= p.bottom() && barrelY >=  p.top() )
-    {
-      p.health -= 10;
-    }
-    //checks for collision on the left side of peter
-    if( barrelRight() > p.left() && barrelY <= p.bottom() && barrelY >=  p.top() )
-    {
-      p.health -= 10;
-    }
+      
   }
   
   //for kong

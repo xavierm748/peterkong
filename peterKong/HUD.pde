@@ -2,13 +2,16 @@ class HUD
 {
   public float healthX, healthY;
   public float healthYsize;
+  public boolean gameOver;
 
   
   public HUD()
   {
+    //setting initial values
     healthX = 50;
     healthY = 10;
     healthYsize = 30;
+    gameOver = false;
   }
   
   void healthBar()
@@ -23,6 +26,15 @@ class HUD
     stroke(255);
     strokeWeight(5);
     rect(healthX, healthY, 200, healthYsize);
+    pop();
+  }
+  
+  void gameOver()
+  {
+    push();
+    fill(#FC0303);
+    textSize(200);
+    text("GAME OVER!", (width/2)-500, height/2);
     pop();
   }
 }

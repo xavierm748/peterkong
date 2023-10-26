@@ -4,6 +4,7 @@ class Peter
   public float peterSize;
   public float peterXspd, peterYspd;
   public float health;
+  public boolean hasHealth;
   public int jumpCounter;
   PImage peter;
   boolean jumped;
@@ -24,6 +25,7 @@ class Peter
     moveLeft = false;
     moveRight = false;
     moveDown = false;
+    hasHealth = true;
     
     //loads and resizes the image
     peter = loadImage("peter_griffin-removebg-preview.png");
