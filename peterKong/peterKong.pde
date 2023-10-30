@@ -19,7 +19,7 @@ void setup()
   s = new StartScreen();
   
   for(int i = 0; i < platformCount  ; i++)
-    plats.add( new Platform(150*i, 150*i) );
+    plats.add( new Platform(250*i, 150*i) );
 }
 
 void draw()
@@ -30,6 +30,12 @@ void draw()
   s.drawTitle();
   s.drawStartbutton();
   
+  //this checks if the barrel is off the screen
+  if(k.barrelY > height)
+    k.barrelOnScreen = false;
+  else
+    k.barrelOnScreen = true;
+  //this checks if peter has health
   if(p.health <= 0)
     p.hasHealth = false;
 
@@ -43,9 +49,12 @@ void draw()
     push();
     p.drawPeter();
     k.drawkong();
-    k.drawBarrel();
+    if(k.barrelOnScreen)
+    {
+      k.drawBarrel();
+      k.moveBarrel();
+    }
     k.movekong();
-    k.moveBarrel();
     pop();
     p.movePeter();
     h.healthBar();

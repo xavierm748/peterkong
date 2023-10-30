@@ -31,6 +31,7 @@ class HUD
   
   void gameOver()
   {
+    background(0);
     push();
     fill(#FC0303);
     textSize(200);
