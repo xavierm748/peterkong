@@ -7,7 +7,10 @@ HUD h;
 StartScreen s;
 
 ArrayList<Platform> plats = new ArrayList <Platform>();
+ArrayList<Barrel> barrel = new ArrayList <Barrel>();
 float platformCount = 6;
+float barrelCount = 1;
+float barrelTimer = 0;
 
 void setup()
 {
@@ -20,6 +23,8 @@ void setup()
   
   for(int i = 0; i < platformCount  ; i++)
     plats.add( new Platform(250*i, 150*i) );
+  for(int i = 0; i < barrelCount  ; i++)
+    barrel.add( new Barrel(100*i, 50*i) );
 }
 
 void draw()
@@ -27,19 +32,21 @@ void draw()
   background(0);
   fill(#F50707);
   
-  s.drawTitle();
-  s.drawStartbutton();
-  
+  if(!s.gameStarted)
+  {
+    s.drawTitle();
+    s.drawStartbutton();
+  }
   //this checks if the barrel is off the screen
-  if(k.barrelY > height)
-    k.barrelOnScreen = false;
-  else
-    k.barrelOnScreen = true;
+  //if(b.barrelY > height)
+  //  k.barrelOnScreen = false;
+  //else
+  //  k.barrelOnScreen = true;
   //this checks if peter has health
   if(p.health <= 0)
     p.hasHealth = false;
 
-  if(s.gameStarted && p.hasHealth)
+  if(s.gameStarted && p.hasHealth && millis() > barrelTimer)
   {
     background(0);
     for(Platform pl: plats)
@@ -49,11 +56,12 @@ void draw()
     push();
     p.drawPeter();
     k.drawkong();
-    if(k.barrelOnScreen)
+    for(Barrel b: barrel)
     {
-      k.drawBarrel();
-      k.moveBarrel();
+      b.drawBarrel();
+      b.moveBarrel();
     }
+    barrelTimer += millis() + 1000;
     k.movekong();
     pop();
     p.movePeter();
@@ -62,9 +70,9 @@ void draw()
   else if(!p.hasHealth)
   {
    h.gameOver();
-   
    s.gameStarted = false;
   }
+  
   //makes peter move right
   if(p.moveRight)
   {
@@ -79,6 +87,7 @@ void draw()
   }
   //debugging
   
+  
 }
 
 void mousePressed()
@@ -91,7 +100,10 @@ void keyPressed()
 {
   //Movement For Peter
   if( key == ' ')
+  {
     p.jump();
+    //p.jumped = false;
+  }
   if( key == 'a')
     p.moveLeft = true;    
   if( key == 'd')
