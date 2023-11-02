@@ -9,7 +9,7 @@ StartScreen s;
 ArrayList<Platform> plats = new ArrayList <Platform>();
 ArrayList<Barrel> barrel = new ArrayList <Barrel>();
 float platformCount = 6;
-float barrelCount = 1;
+float barrelCount = random(1,5);
 float barrelTimer = 0;
 
 void setup()
@@ -37,16 +37,12 @@ void draw()
     s.drawTitle();
     s.drawStartbutton();
   }
-  //this checks if the barrel is off the screen
-  //if(b.barrelY > height)
-  //  k.barrelOnScreen = false;
-  //else
-  //  k.barrelOnScreen = true;
+
   //this checks if peter has health
-  if(p.health <= 0)
+  if( p.health <= 0 )
     p.hasHealth = false;
 
-  if(s.gameStarted && p.hasHealth && millis() > barrelTimer)
+  if( s.gameStarted && p.hasHealth )
   {
     background(0);
     for(Platform pl: plats)
@@ -56,12 +52,15 @@ void draw()
     push();
     p.drawPeter();
     k.drawkong();
-    for(Barrel b: barrel)
+    if( millis() > barrelTimer )
     {
-      b.drawBarrel();
-      b.moveBarrel();
+      for(Barrel b: barrel)
+      {
+        b.drawBarrel();
+        b.moveBarrel();
+      }
+      barrelTimer += millis() + 1000;
     }
-    barrelTimer += millis() + 1000;
     k.movekong();
     pop();
     p.movePeter();

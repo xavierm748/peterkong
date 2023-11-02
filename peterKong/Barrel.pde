@@ -9,7 +9,7 @@ class Barrel
   public Barrel(float x, float y)
   {
     barrelX = x;
-    barrelY = y;
+    barrelY += y;
     barrelXspd = 0;
     barrelYspd = 0;
     barrelSize = 80;
