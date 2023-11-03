@@ -1,7 +1,7 @@
 class Platform
 {
   public float platformXpos;
-  public float platformYpos = 200;
+  public float platformYpos;
   public float platformXsize;
   public float platformYsize;
   PImage platform;
@@ -9,7 +9,7 @@ class Platform
   public Platform(float x, float y)
   {
     //setting the initial values of every variable
-    platformXsize = 500;
+    platformXsize = 600;
     platformYsize = 100;
     platformXpos = x;
     platformYpos += y;

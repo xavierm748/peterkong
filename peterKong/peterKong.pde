@@ -9,7 +9,7 @@ StartScreen s;
 ArrayList<Platform> plats = new ArrayList <Platform>();
 ArrayList<Barrel> barrel = new ArrayList <Barrel>();
 float platformCount = 6;
-float barrelCount = random(1,5);
+float barrelCount = random(1,3);
 float barrelTimer = 0;
 
 void setup()
@@ -20,9 +20,7 @@ void setup()
   k = new kong();
   h = new HUD();
   s = new StartScreen();
-  
-  for(int i = 0; i < platformCount  ; i++)
-    plats.add( new Platform(250*i, 150*i) );
+    
   for(int i = 0; i < barrelCount  ; i++)
     barrel.add( new Barrel(100*i, 50*i) );
 }
@@ -47,6 +45,13 @@ void draw()
     background(0);
     for(Platform pl: plats)
       pl.drawPlatform();
+    plats.add( new Platform(0, 200) );
+    plats.add( new Platform(width-500, 300) );
+    plats.add( new Platform(0, 400) );
+    plats.add( new Platform(width-500, 500) );
+    plats.add( new Platform(0, 600) );
+    plats.add( new Platform(width-500, 700) );
+
 
     fill(#4003FF);
     push();
@@ -54,13 +59,15 @@ void draw()
     k.drawkong();
     if( millis() > barrelTimer )
     {
-      for(Barrel b: barrel)
-      {
-        b.drawBarrel();
-        b.moveBarrel();
-      }
       barrelTimer += millis() + 1000;
+      barrel.add( new Barrel(100, 50) );
     }
+    
+    //for(Barrel b: barrel)
+    //{
+    //  b.drawBarrel();
+    //  b.moveBarrel();
+    //}
     k.movekong();
     pop();
     p.movePeter();
