@@ -4,15 +4,17 @@ class Barrel
   public float barrelX = 100;
   public float barrelY = 50;
   public float barrelSize;
+  public float rotateAmount;
+  public float rotate;
   PImage barrel;
   
   public Barrel(float x, float y)
   {
     barrelX = x;
     barrelY += y;
-    barrelXspd = 0;
+    barrelXspd = 8;
     barrelYspd = 0;
-    barrelSize = 80;
+    barrelSize = 60;
     
     //loading the image and resizing the image
     barrel = loadImage("barrel.png");
@@ -23,7 +25,12 @@ class Barrel
   void drawBarrel()
   {
     //this draws the image
-    image(barrel, barrelX, barrelY);
+    push();
+    translate(barrelX, barrelY);
+    rotate(rotate);
+    image(barrel, 0, 0);
+    rotate += rotateAmount;
+    pop();
   }
   
   void moveBarrel()
@@ -32,7 +39,6 @@ class Barrel
     barrelY += barrelYspd;
     barrelX += barrelXspd;  
     barrelYspd += 0.7; //gravity
-    barrelXspd = 5;
     
     for( Platform P: plats )
     {
@@ -45,8 +51,16 @@ class Barrel
     }
     
     //makes it to where the barrel bounces off of either left or right wall
-    if( barrelX >= width-(barrelSize/2) || barrelX <= 0+(barrelSize/2) )
-      barrelXspd = -barrelXspd;
+    if( barrelX > width-(barrelSize/2) )
+    {
+      barrelXspd -= 5;
+      rotateAmount -= 0.06;
+    }
+    if( barrelX < 0+(barrelSize/2) )
+    {
+      barrelXspd += 5;
+      rotateAmount += 0.06;
+    }
     
     //collision on the barrel hitting peter
     if(  dist( p.peterX, p.peterY, barrelX, barrelY ) <= p.peterSize/2 )

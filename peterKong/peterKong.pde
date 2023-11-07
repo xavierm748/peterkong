@@ -21,11 +21,11 @@ void setup()
   h = new HUD();
   s = new StartScreen();
   
-
-  plats.add( new Platform(0, height-950) );
-  plats.add( new Platform(width-1700, height-700) );
-  plats.add( new Platform(0, height-400) );
-  plats.add( new Platform(width-1700, height-75) );
+  plats.add( new Platform(0, height-900) );
+  plats.add( new Platform(width-1700, height-690) );
+  plats.add( new Platform(0, height-475) );
+  plats.add( new Platform(width-1700, height-275) );
+  plats.add( new Platform(0, height-75) );
   
   for(int i = 0; i < barrelCount  ; i++)
     barrel.add( new Barrel(100*i, 50*i) );

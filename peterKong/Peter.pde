@@ -15,8 +15,8 @@ class Peter
   public Peter()
   {
     //setting initial values ot every variable
-    peterX = width/2;
-    peterY = 200;
+    peterX = width-100;
+    peterY = height-100;
     peterXspd = 0;
     peterYspd = 0;
     peterSize = 70;
@@ -111,7 +111,7 @@ class Peter
   {     
     if(!jumped)
     {
-     peterYspd -= 13;
+     peterYspd -= 17;
      jumped = true;
     }
   }
