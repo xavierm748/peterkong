@@ -9,14 +9,14 @@ class Platform
   public Platform(float x, float y)
   {
     //setting the initial values of every variable
-    platformXsize = 600;
-    platformYsize = 100;
+    platformXsize = 1700;
+    platformYsize = 70;
     platformXpos = x;
     platformYpos += y;
     
     //loading and resizing the png for the platforms
     platform = loadImage("donkeyKongPlatform.png");
-    platform.resize(int(platformXsize),0);
+    platform.resize(int(platformXsize),int(platformYsize));
   }
   
   public void drawPlatform()

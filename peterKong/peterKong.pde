@@ -20,9 +20,16 @@ void setup()
   k = new kong();
   h = new HUD();
   s = new StartScreen();
-    
+  
+
+  plats.add( new Platform(0, height-950) );
+  plats.add( new Platform(width-1700, height-700) );
+  plats.add( new Platform(0, height-400) );
+  plats.add( new Platform(width-1700, height-75) );
+  
   for(int i = 0; i < barrelCount  ; i++)
     barrel.add( new Barrel(100*i, 50*i) );
+
 }
 
 void draw()
@@ -45,13 +52,7 @@ void draw()
     background(0);
     for(Platform pl: plats)
       pl.drawPlatform();
-    plats.add( new Platform(0, 200) );
-    plats.add( new Platform(width-500, 300) );
-    plats.add( new Platform(0, 400) );
-    plats.add( new Platform(width-500, 500) );
-    plats.add( new Platform(0, 600) );
-    plats.add( new Platform(width-500, 700) );
-
+    
 
     fill(#4003FF);
     push();
@@ -63,11 +64,11 @@ void draw()
       barrel.add( new Barrel(100, 50) );
     }
     
-    //for(Barrel b: barrel)
-    //{
-    //  b.drawBarrel();
-    //  b.moveBarrel();
-    //}
+    for(Barrel b: barrel)
+    {
+      b.drawBarrel();
+      b.moveBarrel();
+    }
     k.movekong();
     pop();
     p.movePeter();
@@ -82,17 +83,15 @@ void draw()
   //makes peter move right
   if(p.moveRight)
   {
-    p.peterXspd = 5;
+    p.peterXspd += 5;
     p.moveRight = false;
   }
   //makes peter move left
   if(p.moveLeft)
   {
-    p.peterXspd = -5;
+    p.peterXspd -= 5;
     p.moveLeft = false;
   }
-  //debugging
-  
   
 }
 
@@ -106,10 +105,7 @@ void keyPressed()
 {
   //Movement For Peter
   if( key == ' ')
-  {
     p.jump();
-    //p.jumped = false;
-  }
   if( key == 'a')
     p.moveLeft = true;    
   if( key == 'd')
@@ -121,7 +117,7 @@ void keyPressed()
 
 void keyReleased()
 {
-  //this makes te speed stop increasing
+  //this makes the speed stop increasing
   if( key == 'a')
     p.moveLeft = false;    
   if( key == 'd')

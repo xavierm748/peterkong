@@ -45,7 +45,7 @@ class Barrel
     }
     
     //makes it to where the barrel bounces off of either left or right wall
-    if( barrelX >= width-(k.kongSize/2) || barrelX <= 0+(k.kongSize/2) )
+    if( barrelX >= width-(barrelSize/2) || barrelX <= 0+(barrelSize/2) )
       barrelXspd = -barrelXspd;
     
     //collision on the barrel hitting peter
@@ -54,7 +54,7 @@ class Barrel
       
   }
   
-  //for the barrel
+  //for all of the sides of the barrel
   public float barrelTop()   { return barrelY-barrelSize/2; }
   public float barrelBottom(){ return barrelY+barrelSize/2; }
   public float barrelLeft()  { return barrelX-barrelSize/2; }

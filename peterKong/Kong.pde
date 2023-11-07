@@ -21,7 +21,7 @@ class kong
     kongY = 50;
     kongXspd = 0;
     kongYspd = 0;
-    kongSize = 140;
+    kongSize = 100;
     barrelOnScreen = false;
     
     //loading the image and resizing the image

@@ -19,7 +19,7 @@ class Peter
     peterY = 200;
     peterXspd = 0;
     peterYspd = 0;
-    peterSize = 100;
+    peterSize = 70;
     health = 200;
     jumped = false;
     moveLeft = false;
@@ -68,15 +68,12 @@ class Peter
       peterXspd = 0;
     }
     
-    //this makes it to where you can not jump mid-air
-    if( peterYspd > 2 )
-      jumped = true;
     //this makes it to where the speed does not infinitly increase
     if( peterXspd >= 3 )
-      moveRight = false;
+      peterXspd = 3;
     //this makes it to where the speed does not infinitly decrease
     if( peterXspd <= -3 )
-      moveLeft = false;
+      peterXspd = -3;
     
     //Collision
     for( Platform P: plats )
@@ -114,7 +111,7 @@ class Peter
   {     
     if(!jumped)
     {
-     peterYspd -= 17;
+     peterYspd -= 13;
      jumped = true;
     }
   }
