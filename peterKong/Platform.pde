@@ -9,6 +9,8 @@ class Platform
   public Platform(float x, float y)
   {
     //setting the initial values of every variable
+    //platformXsize = width/1.13;
+    //platformYsize = height/15.4;
     platformXsize = 1700;
     platformYsize = 70;
     platformXpos = x;

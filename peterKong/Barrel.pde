@@ -1,25 +1,28 @@
 class Barrel
 {
   public float barrelXspd, barrelYspd;
-  public float barrelX = 100;
-  public float barrelY = 50;
+  public float barrelX = k.kongX;
+  public float barrelY = k.kongY;
   public float barrelSize;
   public float rotateAmount;
   public float rotate;
+  public boolean wasHit;
   PImage barrel;
   
   public Barrel(float x, float y)
   {
     barrelX = x;
     barrelY += y;
-    barrelXspd = 8;
+    barrelXspd = 5;
     barrelYspd = 0;
     barrelSize = 60;
+    rotateAmount += 0.08;
+    wasHit = false;
     
     //loading the image and resizing the image
     barrel = loadImage("barrel.png");
     barrel.resize(int(barrelSize),0);
-
+    
   }
   
   void drawBarrel()
@@ -54,17 +57,24 @@ class Barrel
     if( barrelX > width-(barrelSize/2) )
     {
       barrelXspd -= 5;
-      rotateAmount -= 0.06;
+      rotateAmount -= 0.08;
     }
     if( barrelX < 0+(barrelSize/2) )
     {
       barrelXspd += 5;
-      rotateAmount += 0.06;
+      rotateAmount += 0.08;
     }
-    
+    //this makes it to where the speed cant exceed 5 or -5
+    if(barrelXspd >= 5)
+      barrelXspd = 5;
+    if(barrelXspd <= -5)
+      barrelXspd = -5;
     //collision on the barrel hitting peter
-    if(  dist( p.peterX, p.peterY, barrelX, barrelY ) <= p.peterSize/2 )
+    if(  dist( p.peterX, p.peterY, barrelX, barrelY ) <= p.peterSize/2 && wasHit == false)
+    {
       p.health -= 10;
+      wasHit = true;
+    }
       
   }
   

@@ -29,7 +29,7 @@ void setup()
   
   for(int i = 0; i < barrelCount  ; i++)
     barrel.add( new Barrel(100*i, 50*i) );
-
+  
 }
 
 void draw()
