@@ -10,7 +10,7 @@ class Ladder
   {
     //sets the initial values of the variabels
     ladderXsize = 50;
-    ladderYsize = 150;
+    ladderYsize = 210;
     ladderXpos = x;
     ladderYpos += y;
     
@@ -25,6 +25,7 @@ class Ladder
     //this draws the ladders
     image(ladder, ladderXpos, ladderYpos);
   }
+  
   //this sets the positions of the different sides of the ladders
   public float ladderTop()     { return ladderYpos; }
   public float ladderBottom()  { return ladderYpos+ladderYsize; }

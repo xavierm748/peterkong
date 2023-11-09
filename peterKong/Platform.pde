@@ -6,14 +6,13 @@ class Platform
   public float platformYsize;
   PImage platform;
   
-  
-  public Platform(float x, float y)
+  public Platform(float x, float y, float Xsize)
   {
     //setting the initial values of every variable
     //platformXsize = width/1.13;
     //platformYsize = height/15.4;
-    platformXsize = 1700;
-    platformYsize = 70;
+    platformXsize = Xsize;
+    platformYsize = 60;
     platformXpos = x;
     platformYpos += y;
     

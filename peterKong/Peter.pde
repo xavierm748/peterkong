@@ -104,6 +104,20 @@ class Peter
         peterX = P.left()-peterSize/2;
       }
     }
+    
+    for(Ladder L: ladder)
+    {
+      //checks for collision on the left side of the ladder
+      if( left() < L.ladderRight() && left() >= L.ladderxMiddle() && peterY <= L.ladderBottom() && peterY >=  L.ladderTop() )
+      {
+        peterX = L.ladderLeft()+peterSize/2;
+      }
+      //checks fot collision on the right side of the ladder
+      if( right() > L.ladderLeft() && right() <= L.ladderxMiddle() && peterY <= L.ladderBottom() && peterY >=  L.ladderTop() )
+      {
+        peterX = L.ladderRight()-peterSize/2;
+      }
+    }
   }
   
   //makes peter jump

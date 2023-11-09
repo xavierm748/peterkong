@@ -10,29 +10,29 @@ ArrayList<Platform> plats = new ArrayList <Platform>();
 ArrayList<Barrel> barrel = new ArrayList <Barrel>();
 ArrayList<Ladder> ladder = new ArrayList <Ladder>();
 float platformCount = 6;
-float barrelCount = random(1,3);
-float barrelTimer = 0;
+float barrelCount = 1;
+float barrelTimer;
 
 void setup()
 {
   fullScreen();
-  //size(1400,1000);
+  
   p = new Peter();
   k = new kong();
   h = new HUD();
   s = new StartScreen();
   
   //this creates the platforms
-  plats.add( new Platform(0, height-910) );
-  plats.add( new Platform(width-1700, height-735) );
-  plats.add( new Platform(0, height-515) );
-  plats.add( new Platform(width-1700, height-295) );
-  plats.add( new Platform(0, height-75) );
+  plats.add( new Platform(0, height-900, 1700) );
+  plats.add( new Platform(width-1700, height-690, 1700) );
+  plats.add( new Platform(0, height-480, 1700) );
+  plats.add( new Platform(width-1700, height-270, 1700) );
+  plats.add( new Platform(0, height-60, width) );
   //this creates the ladders
-  ladder.add( new Ladder(width-550, height-885) );
-  ladder.add( new Ladder(width-1000, height-665) );
-  ladder.add( new Ladder(width-900, height-445) );
-  ladder.add( new Ladder(width-1400, height-225) );
+  ladder.add( new Ladder(width-550, height-900) );
+  ladder.add( new Ladder(width-1400, height-690) );
+  ladder.add( new Ladder(width-900, height-480) );
+  ladder.add( new Ladder(width-1400, height-270) );
   
   for(int i = 0; i < barrelCount  ; i++)
     barrel.add( new Barrel(100*i, 50*i) );
@@ -67,9 +67,10 @@ void draw()
     push();
     p.drawPeter();
     k.drawkong();
+    
     if( millis() > barrelTimer )
     {
-      barrelTimer += millis() + 1000;
+      barrelTimer = millis() + 3000;
       barrel.add( new Barrel(100, 50) );
     }
     
@@ -91,16 +92,10 @@ void draw()
   
   //makes peter move right
   if(p.moveRight)
-  {
     p.peterXspd += 5;
-    p.moveRight = false;
-  }
   //makes peter move left
   if(p.moveLeft)
-  {
     p.peterXspd -= 5;
-    p.moveLeft = false;
-  }
   
 }
 

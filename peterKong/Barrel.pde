@@ -64,17 +64,19 @@ class Barrel
       barrelXspd += 5;
       rotateAmount += 0.08;
     }
+    
     //this makes it to where the speed cant exceed 5 or -5
     if(barrelXspd >= 5)
       barrelXspd = 5;
     if(barrelXspd <= -5)
       barrelXspd = -5;
+      
     //collision on the barrel hitting peter
     if(  dist( p.peterX, p.peterY, barrelX, barrelY ) <= p.peterSize/2 && wasHit == false)
     {
       p.health -= 50;
       p.peterX = width-100;
-      p.peterY = height-100;
+      p.peterY = height-150;
       wasHit = true;
     }
       
