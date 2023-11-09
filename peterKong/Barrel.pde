@@ -27,7 +27,7 @@ class Barrel
   
   void drawBarrel()
   {
-    //this draws the image
+    //this draws the image and rotates the image when so it looks like it is rolling
     push();
     translate(barrelX, barrelY);
     rotate(rotate);
@@ -54,12 +54,12 @@ class Barrel
     }
     
     //makes it to where the barrel bounces off of either left or right wall
-    if( barrelX > width-(barrelSize/2) )
+    if( barrelX >= width-(barrelSize/2) )
     {
       barrelXspd -= 5;
       rotateAmount -= 0.08;
     }
-    if( barrelX < 0+(barrelSize/2) )
+    if( barrelX <= 0+(barrelSize/2) )
     {
       barrelXspd += 5;
       rotateAmount += 0.08;
@@ -72,7 +72,9 @@ class Barrel
     //collision on the barrel hitting peter
     if(  dist( p.peterX, p.peterY, barrelX, barrelY ) <= p.peterSize/2 && wasHit == false)
     {
-      p.health -= 10;
+      p.health -= 50;
+      p.peterX = width-100;
+      p.peterY = height-100;
       wasHit = true;
     }
       

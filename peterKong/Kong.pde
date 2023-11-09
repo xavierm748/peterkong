@@ -1,18 +1,14 @@
 class kong
 {
   public float kongSize;
-  
   public float kongX, kongY;
-  
   public float kongXspd, kongYspd;
-  
   boolean jumped;
   boolean moveLeft;
   boolean moveDown;
   boolean moveRight;
   boolean barrelOnScreen;
   PImage kong;
-  
   
   public kong()
   {

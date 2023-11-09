@@ -8,6 +8,7 @@ StartScreen s;
 
 ArrayList<Platform> plats = new ArrayList <Platform>();
 ArrayList<Barrel> barrel = new ArrayList <Barrel>();
+ArrayList<Ladder> ladder = new ArrayList <Ladder>();
 float platformCount = 6;
 float barrelCount = random(1,3);
 float barrelTimer = 0;
@@ -21,11 +22,17 @@ void setup()
   h = new HUD();
   s = new StartScreen();
   
-  plats.add( new Platform(0, height-900) );
-  plats.add( new Platform(width-1700, height-690) );
-  plats.add( new Platform(0, height-475) );
-  plats.add( new Platform(width-1700, height-275) );
+  //this creates the platforms
+  plats.add( new Platform(0, height-910) );
+  plats.add( new Platform(width-1700, height-735) );
+  plats.add( new Platform(0, height-515) );
+  plats.add( new Platform(width-1700, height-295) );
   plats.add( new Platform(0, height-75) );
+  //this creates the ladders
+  ladder.add( new Ladder(width-550, height-885) );
+  ladder.add( new Ladder(width-1000, height-665) );
+  ladder.add( new Ladder(width-900, height-445) );
+  ladder.add( new Ladder(width-1400, height-225) );
   
   for(int i = 0; i < barrelCount  ; i++)
     barrel.add( new Barrel(100*i, 50*i) );
@@ -52,6 +59,8 @@ void draw()
     background(0);
     for(Platform pl: plats)
       pl.drawPlatform();
+    for(Ladder la: ladder)
+      la.drawLadder();
     
 
     fill(#4003FF);

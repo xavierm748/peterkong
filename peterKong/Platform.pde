@@ -6,6 +6,7 @@ class Platform
   public float platformYsize;
   PImage platform;
   
+  
   public Platform(float x, float y)
   {
     //setting the initial values of every variable
@@ -19,15 +20,17 @@ class Platform
     //loading and resizing the png for the platforms
     platform = loadImage("donkeyKongPlatform.png");
     platform.resize(int(platformXsize),int(platformYsize));
+    
   }
   
   public void drawPlatform()
   {
-    //this draws the image for the platform
+    //this draws the platforms
     image(platform, platformXpos, platformYpos);
   }
-
-  //this sets the positions of the different sides of the platform
+  
+  
+  //this sets the positions of the different sides of the platforms
   public float top()     { return platformYpos; }
   public float bottom()  { return platformYpos+platformYsize; }
   public float left()    { return platformXpos; }
