@@ -28,7 +28,6 @@ class Platform
     image(platform, platformXpos, platformYpos);
   }
   
-  
   //this sets the positions of the different sides of the platforms
   public float top()     { return platformYpos; }
   public float bottom()  { return platformYpos+platformYsize; }

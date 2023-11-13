@@ -96,6 +96,11 @@ void draw()
   //makes peter move left
   if(p.moveLeft)
     p.peterXspd -= 5;
+  //makes peter move up when he is on the ladder
+  if( p.goingUp )
+    p.peterYspd -= 1;
+  if( p.goingUp )
+    p.peterYspd -= 1;
   
 }
 
@@ -116,7 +121,11 @@ void keyPressed()
     p.moveRight = true;
   if( key == 's')
     p.down();
-    
+  
+  if( p.onLadder && key == 'w')
+    p.goingUp = true;
+  if( p.onLadder && key == 'w')
+    p.goingUp = true;
 }
 
 void keyReleased()
@@ -126,4 +135,6 @@ void keyReleased()
     p.moveLeft = false;    
   if( key == 'd')
     p.moveRight = false;
+  if(key == 'w')
+    p.goingUp = false;
 }

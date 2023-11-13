@@ -11,6 +11,8 @@ class Peter
   boolean moveLeft;
   boolean moveDown;
   boolean moveRight;
+  boolean goingUp;
+  boolean onLadder;
 
   public Peter()
   {
@@ -25,6 +27,7 @@ class Peter
     moveLeft = false;
     moveRight = false;
     moveDown = false;
+    goingUp = false;
     hasHealth = true;
     
     //loads and resizes the image
@@ -110,12 +113,12 @@ class Peter
       //checks for collision on the left side of the ladder
       if( left() < L.ladderRight() && left() >= L.ladderxMiddle() && peterY <= L.ladderBottom() && peterY >=  L.ladderTop() )
       {
-        peterX = L.ladderLeft()+peterSize/2;
+        onLadder = true;
       }
       //checks fot collision on the right side of the ladder
       if( right() > L.ladderLeft() && right() <= L.ladderxMiddle() && peterY <= L.ladderBottom() && peterY >=  L.ladderTop() )
       {
-        peterX = L.ladderRight()-peterSize/2;
+        onLadder = true;
       }
     }
   }
@@ -128,8 +131,7 @@ class Peter
      peterYspd -= 17;
      jumped = true;
     }
-  }
-  
+  }  
   //makes peter smash(not a hulk pun)
   public void down()
   {
