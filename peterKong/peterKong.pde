@@ -115,11 +115,11 @@ void keyPressed()
   //Movement For Peter
   if( key == ' ')
     p.jump();
-  if( key == 'a')
+  if( key == 'a' || key == 'A')
     p.moveLeft = true;    
-  if( key == 'd')
+  if( key == 'd' || key == 'D')
     p.moveRight = true;
-  if( key == 's')
+  if( key == 's' || key == 'S')
     p.down();
   
   if( p.onLadder && key == 'w')
@@ -131,9 +131,9 @@ void keyPressed()
 void keyReleased()
 {
   //this makes the speed stop increasing
-  if( key == 'a')
+  if( key == 'a' || key == 'A')
     p.moveLeft = false;    
-  if( key == 'd')
+  if( key == 'd' || key == 'D')
     p.moveRight = false;
   if(key == 'w')
     p.goingUp = false;
