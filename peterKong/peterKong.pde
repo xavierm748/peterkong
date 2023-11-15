@@ -23,10 +23,19 @@ void setup()
   s = new StartScreen();
   
   //this creates the platforms
-  plats.add( new Platform(0, height-900, 1700) );
-  plats.add( new Platform(width-1700, height-690, 1700) );
-  plats.add( new Platform(0, height-480, 1700) );
-  plats.add( new Platform(width-1700, height-270, 1700) );
+  //platform 1
+  plats.add( new Platform(0, height-900, 1375) );
+  plats.add( new Platform(width-500, height-900, 300) );
+  //platform 2
+  plats.add( new Platform(width-1350, height-690, 1350) );
+  plats.add( new Platform(width-1700, height-690, 300) );
+  //platform 3
+  plats.add( new Platform(0, height-480, 1025) );
+  plats.add( new Platform(width-850, height-480, 650) );
+  //platform 4
+  plats.add( new Platform(width-1350, height-270, 1350) );
+  plats.add( new Platform(width-1700, height-270, 300) );
+  //platform 5
   plats.add( new Platform(0, height-60, width) );
   //this creates the ladders
   ladder.add( new Ladder(width-550, height-900) );
@@ -74,11 +83,11 @@ void draw()
       barrel.add( new Barrel(100, 50) );
     }
     
-    for(Barrel b: barrel)
-    {
-      b.drawBarrel();
-      b.moveBarrel();
-    }
+    //for(Barrel b: barrel)
+    //{
+    //  b.drawBarrel();
+    //  b.moveBarrel();
+    //}
     k.movekong();
     pop();
     p.movePeter();
@@ -97,11 +106,8 @@ void draw()
   if(p.moveLeft)
     p.peterXspd -= 5;
   //makes peter move up when he is on the ladder
-  if( p.goingUp )
+  if( p.goingUp && p.onLadder)
     p.peterYspd -= 1;
-  if( p.goingUp )
-    p.peterYspd -= 1;
-  
 }
 
 void mousePressed()
@@ -113,28 +119,23 @@ void mousePressed()
 void keyPressed()
 {
   //Movement For Peter
-  if( key == ' ')
+  if( key == ' ' )
     p.jump();
-  if( key == 'a' || key == 'A')
+  if( key == 'a' || key == 'A' )
     p.moveLeft = true;    
-  if( key == 'd' || key == 'D')
+  if( key == 'd' || key == 'D' )
     p.moveRight = true;
-  if( key == 's' || key == 'S')
-    p.down();
-  
-  if( p.onLadder && key == 'w')
-    p.goingUp = true;
-  if( p.onLadder && key == 'w')
+  if( key == 'w' || key == 'W' )
     p.goingUp = true;
 }
 
 void keyReleased()
 {
   //this makes the speed stop increasing
-  if( key == 'a' || key == 'A')
+  if( key == 'a' || key == 'A' )
     p.moveLeft = false;    
-  if( key == 'd' || key == 'D')
+  if( key == 'd' || key == 'D' )
     p.moveRight = false;
-  if(key == 'w')
+  if( key == 'w' || key == 'W' )
     p.goingUp = false;
 }

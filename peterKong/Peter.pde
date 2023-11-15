@@ -111,14 +111,20 @@ class Peter
     for(Ladder L: ladder)
     {
       //checks for collision on the left side of the ladder
-      if( left() < L.ladderRight() && left() >= L.ladderxMiddle() && peterY <= L.ladderBottom() && peterY >=  L.ladderTop() )
+      if( ( peterX < L.ladderRight() && peterX >= L.ladderxMiddle() && peterY <= L.ladderBottom() && peterY >=  L.ladderTop()) || 
+          ( peterX > L.ladderLeft() && peterX <= L.ladderxMiddle() && peterY <= L.ladderBottom() && peterY >=  L.ladderTop()) )
       {
         onLadder = true;
+        break;
       }
-      //checks fot collision on the right side of the ladder
-      if( right() > L.ladderLeft() && right() <= L.ladderxMiddle() && peterY <= L.ladderBottom() && peterY >=  L.ladderTop() )
+      else
+        onLadder = false;
+      
+      //checks for collision on the top of the ladder
+      if( bottom() == L.ladderTop() && peterX >= L.ladderLeft() && peterX <=  L.ladderRight() )
       {
-        onLadder = true;
+        peterYspd = 0;
+        jumped = false;
       }
     }
   }
@@ -132,15 +138,6 @@ class Peter
      jumped = true;
     }
   }  
-  //makes peter smash(not a hulk pun)
-  public void down()
-  {
-    if(!moveDown)
-    {
-     peterYspd += 25;
-     moveDown = false;
-    }
-  }
     
   public float top()   { return peterY-peterSize/2; }
   public float bottom(){ return peterY+peterSize/2; }
