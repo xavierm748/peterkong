@@ -28,10 +28,10 @@ void setup()
   //this creates the platforms
   //platform 1
   plats.add( new Platform(0, height-900, 275) );
-  //plats.add( new Platform(275, height-900, 275) );
-  //plats.add( new Platform(550, height-900, 275) );
-  //plats.add( new Platform(825, height-900, 275) );
-  //plats.add( new Platform(1100, height-900, 275) );
+  plats.add( new Platform(275, height-900, 275) );
+  plats.add( new Platform(550, height-900, 275) );
+  plats.add( new Platform(825, height-900, 275) );
+  plats.add( new Platform(1100, height-900, 275) );
   plats.add( new Platform(width-500, height-900, width/6.4) );
   //platform 2
   plats.add( new Platform(width-1350, height-690, 270) );
@@ -89,17 +89,17 @@ void draw()
     p.hasHealth = false;
 
   //platform 1
-  for(int i = 0; i < platform1; i++)
-    plats.add( new Platform(275*i, height-900, 275) );
+  //for(int i = 0; i < platform1; i++)
+  //  plats.add( new Platform(275*i, height-900, 275) );
   //platform 2
-  for(int i = 0; i < platform2; i++)
-    plats.add( new Platform(width-(270*-i), height-690, 270) );
-  //platform 3
-  for(int i = 0; i < platform3; i++)
-    plats.add( new Platform(256, height-480, 256) );
-  //platform 4
-  for(int i = 0; i < platform4; i++)
-    plats.add( new Platform(275*i, height-900, 275) );
+  //for(int i = 0; i < platform2; i++)
+  //  plats.add( new Platform(width-(270*-i), height-690, 270) );
+  ////platform 3
+  //for(int i = 0; i < platform3; i++)
+  //  plats.add( new Platform(256, height-480, 256) );
+  ////platform 4
+  //for(int i = 0; i < platform4; i++)
+  //  plats.add( new Platform(275*i, height-900, 275) );
 
   if( s.gameStarted && p.hasHealth )
   {
@@ -123,7 +123,10 @@ void draw()
     
     for(Barrel b: barrel)
     {
-      b.drawBarrel();
+      if(b.barrelOnLadder)
+        b.drawSideBarrel();
+      else 
+        b.drawBarrel();
       b.moveBarrel();
     }
     k.movekong();

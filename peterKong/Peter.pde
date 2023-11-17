@@ -110,7 +110,7 @@ class Peter
     
     for(Ladder L: ladder)
     {
-      //checks for collision on the left side of the ladder
+      //checks to see if you are on the ladder
       if( ( peterX < L.ladderRight() && peterX >= L.ladderxMiddle() && peterY <= L.ladderBottom() && peterY >=  L.ladderTop()) || 
           ( peterX > L.ladderLeft() && peterX <= L.ladderxMiddle() && peterY <= L.ladderBottom() && peterY >=  L.ladderTop()) )
       {
