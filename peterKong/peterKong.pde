@@ -121,11 +121,11 @@ void draw()
       barrel.add( new Barrel(100, 50) );
     }
     
-    //for(Barrel b: barrel)
-    //{
-    //  b.drawBarrel();
-    //  b.moveBarrel();
-    //}
+    for(Barrel b: barrel)
+    {
+      b.drawBarrel();
+      b.moveBarrel();
+    }
     k.movekong();
     pop();
     p.movePeter();

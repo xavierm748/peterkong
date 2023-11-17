@@ -4,10 +4,17 @@ class Barrel
   public float barrelX = k.kongX;
   public float barrelY = k.kongY;
   public float barrelSize;
+  
+  public float sideBarrelXspd, sideBarrelYspd;
+  public float sideBarrelX = k.kongX;
+  public float sideBarrelY = k.kongY;
+  public float sideBarrelSize;
+  
   public float rotateAmount;
   public float rotate;
   public boolean wasHit;
   PImage barrel;
+  PImage sideBarrel;
   
   public Barrel(float x, float y)
   {
@@ -16,12 +23,20 @@ class Barrel
     barrelXspd = 5;
     barrelYspd = 0;
     barrelSize = 60;
+    sideBarrelX = x;
+    sideBarrelY += y;
+    sideBarrelXspd = 5;
+    sideBarrelYspd = 0;
+    sideBarrelSize = 60;
     rotateAmount += 0.08;
     wasHit = false;
     
     //loading the image and resizing the image
     barrel = loadImage("barrel.png");
     barrel.resize(int(barrelSize),0);
+    //loading the image and resizing the image
+    sideBarrel = loadImage("side of barrel.png");
+    sideBarrel.resize(int(sideBarrelSize),0);
     
   }
   
@@ -34,6 +49,11 @@ class Barrel
     image(barrel, 0, 0);
     rotate += rotateAmount;
     pop();
+  }
+  
+  void drawSideBarrel()
+  {
+    image(sideBarrel, sideBarrelX, sideBarrelY);
   }
   
   void moveBarrel()
@@ -50,6 +70,18 @@ class Barrel
       {
         barrelYspd = 0;
         barrelY = P.top()-barrelSize/2;
+      }
+      //checks for collision on the right side of the platform
+      if( barrelLeft() < P.right() && barrelLeft() >= P.xMiddle() && barrelY <= P.bottom() && barrelY >=  P.top() )
+      {
+        barrelXspd = 0;
+        barrelX = P.right()+barrelSize/2;
+      }
+      //checks for collision on the left side of the platform
+      if( barrelRight() > P.left() && barrelRight() <= P.xMiddle() && barrelY <= P.bottom() && barrelY >=  P.top() )
+      {
+        barrelXspd = 0;
+        barrelX = P.left()-barrelSize/2;
       }
     }
     
