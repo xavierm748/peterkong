@@ -9,9 +9,12 @@ StartScreen s;
 ArrayList<Platform> plats = new ArrayList <Platform>();
 ArrayList<Barrel> barrel = new ArrayList <Barrel>();
 ArrayList<Ladder> ladder = new ArrayList <Ladder>();
-float platformCount = 6;
 float barrelCount = 1;
 float barrelTimer;
+float platform1 = 5;
+float platform2 = 5;
+float platform3 = 4;
+float platform4 = 5;
 
 void setup()
 {
@@ -24,19 +27,40 @@ void setup()
   
   //this creates the platforms
   //platform 1
-  plats.add( new Platform(0, height-900, 1375) );
-  plats.add( new Platform(width-500, height-900, 300) );
+  plats.add( new Platform(0, height-900, 275) );
+  //plats.add( new Platform(275, height-900, 275) );
+  //plats.add( new Platform(550, height-900, 275) );
+  //plats.add( new Platform(825, height-900, 275) );
+  //plats.add( new Platform(1100, height-900, 275) );
+  plats.add( new Platform(width-500, height-900, width/6.4) );
   //platform 2
-  plats.add( new Platform(width-1350, height-690, 1350) );
-  plats.add( new Platform(width-1700, height-690, 300) );
+  plats.add( new Platform(width-1350, height-690, 270) );
+  plats.add( new Platform(width-1080, height-690, 270) );
+  plats.add( new Platform(width-810, height-690, 270) );
+  plats.add( new Platform(width-540, height-690, 270) );
+  plats.add( new Platform(width-270, height-690, 270) );
+  plats.add( new Platform(width-1700, height-690, width/6.4) );
   //platform 3
-  plats.add( new Platform(0, height-480, 1025) );
-  plats.add( new Platform(width-850, height-480, 650) );
+  plats.add( new Platform(0, height-480, 256) );
+  plats.add( new Platform(256, height-480, 256) );
+  plats.add( new Platform(512, height-480, 256) );
+  plats.add( new Platform(768, height-480, 256) );
+  plats.add( new Platform(width-850, height-480, 325) );
+  plats.add( new Platform(width-525, height-480, 325) );
   //platform 4
-  plats.add( new Platform(width-1350, height-270, 1350) );
-  plats.add( new Platform(width-1700, height-270, 300) );
+  plats.add( new Platform(width-1350, height-270, 270) );
+  plats.add( new Platform(width-1080, height-270, 270) );
+  plats.add( new Platform(width-810, height-270, 270) );
+  plats.add( new Platform(width-540, height-270, 270) );
+  plats.add( new Platform(width-270, height-270, 270) );
+  plats.add( new Platform(width-1700, height-270, width/6.4) );
   //platform 5
-  plats.add( new Platform(0, height-60, width) );
+  plats.add( new Platform(0, height-60, 320) );
+  plats.add( new Platform(320, height-60, 320) );
+  plats.add( new Platform(640, height-60, 320) );
+  plats.add( new Platform(960, height-60, 320) );
+  plats.add( new Platform(1280, height-60, 320) );
+  plats.add( new Platform(1600, height-60, 320) );
   //this creates the ladders
   ladder.add( new Ladder(width-550, height-900) );
   ladder.add( new Ladder(width-1400, height-690) );
@@ -45,7 +69,8 @@ void setup()
   
   for(int i = 0; i < barrelCount  ; i++)
     barrel.add( new Barrel(100*i, 50*i) );
-  
+  println("width: " + width);
+  println("height: " + height);
 }
 
 void draw()
@@ -62,6 +87,19 @@ void draw()
   //this checks if peter has health
   if( p.health <= 0 )
     p.hasHealth = false;
+
+  //platform 1
+  for(int i = 0; i < platform1; i++)
+    plats.add( new Platform(275*i, height-900, 275) );
+  //platform 2
+  for(int i = 0; i < platform2; i++)
+    plats.add( new Platform(width-(270*-i), height-690, 270) );
+  //platform 3
+  for(int i = 0; i < platform3; i++)
+    plats.add( new Platform(256, height-480, 256) );
+  //platform 4
+  for(int i = 0; i < platform4; i++)
+    plats.add( new Platform(275*i, height-900, 275) );
 
   if( s.gameStarted && p.hasHealth )
   {
