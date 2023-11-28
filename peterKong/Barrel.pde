@@ -6,14 +6,12 @@ class Barrel
   public float barrelY = k.kongY;
   public float barrelSize;
   //variables for the side of the barrel
-  public float sideBarrelXspd, sideBarrelYspd;
-  public float sideBarrelX = k.kongX;
-  public float sideBarrelY = k.kongY;
-  public float sideBarrelSize;
   //miscellaneous variables
   public float rotateAmount;
+  public float preXspd;
   public float rotate;
   public boolean wasHit;
+  public boolean onPlatform;
   public boolean barrelOnLadder;
   PImage barrel;
   PImage sideBarrel;
@@ -25,13 +23,10 @@ class Barrel
     barrelXspd = 5;
     barrelYspd = 0;
     barrelSize = 60;
-    sideBarrelX = x;
-    sideBarrelY += y;
-    sideBarrelXspd = 5;
-    sideBarrelYspd = 0;
-    sideBarrelSize = 60;
     rotateAmount += 0.08;
+    preXspd = barrelXspd;
     wasHit = false;
+    onPlatform = false;
     barrelOnLadder = false;
     
     //loading the image and resizing the image
@@ -39,7 +34,7 @@ class Barrel
     barrel.resize(int(barrelSize),0);
     //loading the image and resizing the image
     sideBarrel = loadImage("side of barrel.png");
-    sideBarrel.resize(int(sideBarrelSize),0);
+    sideBarrel.resize(int(barrelSize),0);
     
   }
   
@@ -73,7 +68,10 @@ class Barrel
       {
         barrelYspd = 0;
         barrelY = P.top()-barrelSize/2;
+        onPlatform = true;
       }
+      else
+        onPlatform = false;
       //checks for collision on the right side of the platform
       if( barrelLeft() < P.right() && barrelLeft() >= P.xMiddle() && barrelY <= P.bottom() && barrelY >=  P.top() )
       {
@@ -91,7 +89,8 @@ class Barrel
     for(Ladder L: ladder)
     {     
       //checks for collision on the top of the ladder
-      if( barrelBottom() == L.ladderTop() && barrelX >= L.ladderLeft() && barrelX <=  L.ladderRight() )
+      if( ( barrelX < L.ladderRight() && barrelX >= L.ladderxMiddle() && barrelY <= L.ladderBottom() && barrelY >=  L.ladderTop()) || 
+          ( barrelX > L.ladderLeft() && barrelX <= L.ladderxMiddle() && barrelY <= L.ladderBottom() && barrelY >=  L.ladderTop()) )
       {
         barrelOnLadder = true;
         break;
@@ -133,10 +132,5 @@ class Barrel
   public float barrelBottom(){ return barrelY+barrelSize/2; }
   public float barrelLeft()  { return barrelX-barrelSize/2; }
   public float barrelRight() { return barrelX+barrelSize/2; }
-  //for all of the sides of the barrel
-  public float sideBarrelTop()   { return sideBarrelY-sideBarrelSize/2; }
-  public float sideBarrelBottom(){ return sideBarrelY+sideBarrelSize/2; }
-  public float sideBarrelLeft()  { return sideBarrelX-sideBarrelSize/2; }
-  public float sideBarrelRight() { return sideBarrelX+sideBarrelSize/2; }
 
 }

@@ -109,7 +109,6 @@ void draw()
     for(Ladder la: ladder)
       la.drawLadder();
     
-
     fill(#4003FF);
     push();
     p.drawPeter();
@@ -123,8 +122,12 @@ void draw()
     
     for(Barrel b: barrel)
     {
-      if(b.barrelOnLadder)
+      if(b.barrelOnLadder && !b.onPlatform)
+      {
+        b.barrelXspd = -b.preXspd;
         b.drawSideBarrel();
+        //b.preXspd = 0;
+      }
       else 
         b.drawBarrel();
       b.moveBarrel();
