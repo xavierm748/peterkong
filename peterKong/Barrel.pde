@@ -5,12 +5,13 @@ class Barrel
   public float barrelX = k.kongX;
   public float barrelY = k.kongY;
   public float barrelSize;
-  //variables for the side of the barrel
   //miscellaneous variables
   public float rotateAmount;
   public float preXspd;
   public float rotate;
-  public boolean wasHit;
+  public boolean peterWasHit;
+  public boolean rightWallHit;
+  public boolean leftWallHit;
   public boolean onPlatform;
   public boolean barrelOnLadder;
   PImage barrel;
@@ -25,7 +26,9 @@ class Barrel
     barrelSize = 60;
     rotateAmount += 0.08;
     preXspd = barrelXspd;
-    wasHit = false;
+    peterWasHit = false;
+    rightWallHit = false;
+    leftWallHit = false;
     onPlatform = false;
     barrelOnLadder = false;
     
@@ -56,7 +59,7 @@ class Barrel
   
   void moveBarrel()
   {
-    //this moves the player
+    //this moves the barrel
     barrelY += barrelYspd;
     barrelX += barrelXspd;  
     barrelYspd += 0.7; //gravity
@@ -103,12 +106,19 @@ class Barrel
     {
       barrelXspd -= 5;
       rotateAmount -= 0.08;
+      rightWallHit = true;
     }
+    else
+      rightWallHit = false;
     if( barrelX <= 0+(barrelSize/2) )
     {
       barrelXspd += 5;
       rotateAmount += 0.08;
+      leftWallHit = true;
     }
+    else
+      leftWallHit = false;
+    
     
     //this makes it to where the speed cant exceed 5 or -5
     if(barrelXspd >= 5)
@@ -117,12 +127,12 @@ class Barrel
       barrelXspd = -5;
       
     //collision on the barrel hitting peter
-    if(  dist( p.peterX, p.peterY, barrelX, barrelY ) <= p.peterSize/2 && wasHit == false)
+    if(  dist( p.peterX, p.peterY, barrelX, barrelY ) <= p.peterSize/2 && peterWasHit == false)
     {
       p.health -= 50;
       p.peterX = width-100;
       p.peterY = height-150;
-      wasHit = true;
+      peterWasHit = true;
     }
       
   }

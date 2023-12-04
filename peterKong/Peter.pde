@@ -12,7 +12,7 @@ class Peter
   boolean moveDown;
   boolean moveRight;
   boolean goingUp;
-  boolean onLadder;
+  boolean peterOnLadder;
 
   public Peter()
   {
@@ -114,11 +114,11 @@ class Peter
       if( ( peterX < L.ladderRight() && peterX >= L.ladderxMiddle() && peterY <= L.ladderBottom() && peterY >=  L.ladderTop()) || 
           ( peterX > L.ladderLeft() && peterX <= L.ladderxMiddle() && peterY <= L.ladderBottom() && peterY >=  L.ladderTop()) )
       {
-        onLadder = true;
+        peterOnLadder = true;
         break;
       }
       else
-        onLadder = false;
+        peterOnLadder = false;
       
       //checks for collision on the top of the ladder
       if( bottom() == L.ladderTop() && peterX >= L.ladderLeft() && peterX <=  L.ladderRight() )

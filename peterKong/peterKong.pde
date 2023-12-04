@@ -32,7 +32,7 @@ void setup()
   plats.add( new Platform(550, height-900, 275) );
   plats.add( new Platform(825, height-900, 275) );
   plats.add( new Platform(1100, height-900, 275) );
-  plats.add( new Platform(width-500, height-900, width/6.4) );
+  plats.add( new Platform(width-498, height-900, width/6.4) );
   //platform 2
   plats.add( new Platform(width-1350, height-690, 270) );
   plats.add( new Platform(width-1080, height-690, 270) );
@@ -62,7 +62,7 @@ void setup()
   plats.add( new Platform(1280, height-60, 320) );
   plats.add( new Platform(1600, height-60, 320) );
   //this creates the ladders
-  ladder.add( new Ladder(width-550, height-900) );
+  ladder.add( new Ladder(width-549, height-900) );
   ladder.add( new Ladder(width-1400, height-690) );
   ladder.add( new Ladder(width-900, height-480) );
   ladder.add( new Ladder(width-1400, height-270) );
@@ -114,8 +114,12 @@ void draw()
         b.barrelXspd = -b.preXspd;
         b.drawSideBarrel();
       }
+      else if(b.barrelOnLadder && b.onPlatform)
+        b.barrelOnLadder = false;
       else 
         b.drawBarrel();
+      //if( b.barrelY >= height-280 && b.rightWallHit )
+      //  barrel.remove(1);
       b.moveBarrel();
     }
     k.movekong();
@@ -136,7 +140,7 @@ void draw()
   if(p.moveLeft)
     p.peterXspd -= 5;
   //makes peter move up when he is on the ladder
-  if( p.goingUp && p.onLadder)
+  if( p.goingUp && p.peterOnLadder)
     p.peterYspd -= 1;
 }
 

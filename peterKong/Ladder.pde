@@ -10,7 +10,7 @@ class Ladder
   {
     //sets the initial values of the variabels
     ladderXsize = 50;
-    ladderYsize = 210;
+    ladderYsize = 150;
     ladderXpos = x;
     ladderYpos += y;
     
