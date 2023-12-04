@@ -88,19 +88,6 @@ void draw()
   if( p.health <= 0 )
     p.hasHealth = false;
 
-  //platform 1
-  //for(int i = 0; i < platform1; i++)
-  //  plats.add( new Platform(275*i, height-900, 275) );
-  //platform 2
-  //for(int i = 0; i < platform2; i++)
-  //  plats.add( new Platform(width-(270*-i), height-690, 270) );
-  ////platform 3
-  //for(int i = 0; i < platform3; i++)
-  //  plats.add( new Platform(256, height-480, 256) );
-  ////platform 4
-  //for(int i = 0; i < platform4; i++)
-  //  plats.add( new Platform(275*i, height-900, 275) );
-
   if( s.gameStarted && p.hasHealth )
   {
     background(0);
@@ -126,7 +113,6 @@ void draw()
       {
         b.barrelXspd = -b.preXspd;
         b.drawSideBarrel();
-        //b.preXspd = 0;
       }
       else 
         b.drawBarrel();

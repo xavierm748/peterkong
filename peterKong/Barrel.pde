@@ -87,7 +87,7 @@ class Barrel
     }
     //this maked it to where the barrel will "turn" to the side when it goes down a ladder
     for(Ladder L: ladder)
-    {     
+    {
       //checks for collision on the top of the ladder
       if( ( barrelX < L.ladderRight() && barrelX >= L.ladderxMiddle() && barrelY <= L.ladderBottom() && barrelY >=  L.ladderTop()) || 
           ( barrelX > L.ladderLeft() && barrelX <= L.ladderxMiddle() && barrelY <= L.ladderBottom() && barrelY >=  L.ladderTop()) )
