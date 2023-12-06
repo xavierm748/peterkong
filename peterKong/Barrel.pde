@@ -96,6 +96,7 @@ class Barrel
           ( barrelX > L.ladderLeft() && barrelX <= L.ladderxMiddle() && barrelY <= L.ladderBottom() && barrelY >=  L.ladderTop()) )
       {
         barrelOnLadder = true;
+        barrelYspd = 3;
         break;
       }
       else

@@ -118,8 +118,8 @@ void draw()
         b.barrelOnLadder = false;
       else 
         b.drawBarrel();
-      //if( b.barrelY >= height-280 && b.rightWallHit )
-      //  barrel.remove(1);
+      //if( ( b.barrelY >= height-280 && b.rightWallHit ) || b.peterWasHit)
+      //  barrel.remove(0);
       b.moveBarrel();
     }
     k.movekong();
