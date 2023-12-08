@@ -92,11 +92,45 @@ class Barrel
     for(Ladder L: ladder)
     {
       //checks for collision on the top of the ladder
-      if( ( barrelX < L.ladderRight() && barrelX >= L.ladderxMiddle() && barrelY <= L.ladderBottom() && barrelY >=  L.ladderTop()) || 
-          ( barrelX > L.ladderLeft() && barrelX <= L.ladderxMiddle() && barrelY <= L.ladderBottom() && barrelY >=  L.ladderTop()) )
+      //if( (( barrelX < L.ladderRight() && barrelX >= L.ladderxMiddle() && barrelY <= L.ladderBottom() && barrelY >=  L.ladderTop()) || 
+      //     ( barrelX > L.ladderLeft() && barrelX <= L.ladderxMiddle() && barrelY <= L.ladderBottom() && barrelY >=  L.ladderTop())) )
+      //{
+      //  barrelOnLadder = true;
+      //  barrelYspd = 3;
+      //  barrelXspd = 0;
+      //  break;
+      //}
+      
+      //checks for collision on the top of the ladder
+      if( barrelY < L.ladderBottom() && barrelY >= L.ladderyMiddle() && barrelX <= L.ladderRight() && barrelX >=  L.ladderLeft() )
       {
         barrelOnLadder = true;
         barrelYspd = 3;
+        barrelXspd = 0;
+        break;
+      }
+      //checks for collision on the bottom of the ladder
+      else if( barrelY > L.ladderTop() && barrelY <= L.ladderyMiddle() && barrelX <= L.ladderRight() && barrelX >=  L.ladderLeft() )
+      {
+        barrelOnLadder = true;
+        barrelYspd = 3;
+        barrelXspd = 0;
+        break;
+      }
+      //checks for collision on the right side of the ladder
+      else if( barrelX < L.ladderRight() && barrelX >= L.ladderxMiddle() && barrelY <= L.ladderBottom() && barrelY >=  L.ladderTop() )
+      {
+        barrelOnLadder = true;
+        barrelYspd = 3;
+        barrelXspd = 0;
+        break;
+      }
+      //checks for collision on the left side of the ladder
+      else if( barrelX > L.ladderLeft() && barrelX <= L.ladderxMiddle() && barrelY <= L.ladderBottom() && barrelY >=  L.ladderTop() )
+      {
+        barrelOnLadder = true;
+        barrelYspd = 3;
+        barrelXspd = 0;
         break;
       }
       else
