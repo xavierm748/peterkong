@@ -3,7 +3,6 @@ class HUD
   public float healthX, healthY;
   public float healthYsize;
   public boolean gameOver;
-
   
   public HUD()
   {
