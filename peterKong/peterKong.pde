@@ -69,8 +69,6 @@ void setup()
   
   for(int i = 0; i < barrelCount  ; i++)
     barrel.add( new Barrel(100*i, 50*i) );
-  println("width: " + width);
-  println("height: " + height);
 }
 
 void draw()
@@ -118,10 +116,27 @@ void draw()
         b.barrelOnLadder = false;
       else 
         b.drawBarrel();
+      
       if( b.barrelOnLadder)
         b.barrelXspd = 0;
       else
         b.barrelXspd = 5;
+        
+      if(b.rightWallHit)
+      {
+        b.barrelXspd = -b.barrelXspd;
+        b.rotateAmount = -0.08;
+        if(b.rightWallHit)
+          println("it worked!!!!!!!!!!!!!!!!!");
+      }
+      if(b.leftWallHit)
+      {
+        b.barrelXspd = -b.barrelXspd;
+        b.rotateAmount = 0.08;
+        if(b.leftWallHit)
+          println("it still works!!!!!!!!!!!!!!!!!");
+      }
+      
       b.moveBarrel();
     }
     k.movekong();

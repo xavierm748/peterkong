@@ -90,17 +90,7 @@ class Barrel
     }
     //this maked it to where the barrel will "turn" to the side when it goes down a ladder
     for(Ladder L: ladder)
-    {
-      //checks for collision on the top of the ladder
-      //if( (( barrelX < L.ladderRight() && barrelX >= L.ladderxMiddle() && barrelY <= L.ladderBottom() && barrelY >=  L.ladderTop()) || 
-      //     ( barrelX > L.ladderLeft() && barrelX <= L.ladderxMiddle() && barrelY <= L.ladderBottom() && barrelY >=  L.ladderTop())) )
-      //{
-      //  barrelOnLadder = true;
-      //  barrelYspd = 3;
-      //  barrelXspd = 0;
-      //  break;
-      //}
-      
+    {      
       //checks for collision on the top of the ladder
       if( barrelY < L.ladderBottom() && barrelY >= L.ladderyMiddle() && barrelX <= L.ladderRight() && barrelX >=  L.ladderLeft() )
       {
@@ -138,19 +128,11 @@ class Barrel
     }
     //makes it to where the barrel bounces off of either left or right wall
     if( barrelX >= width-(barrelSize/2) )
-    {
-      barrelXspd -= 5;
-      rotateAmount -= 0.08;
       rightWallHit = true;
-    }
     else
       rightWallHit = false;
     if( barrelX <= 0+(barrelSize/2) )
-    {
-      barrelXspd += 5;
-      rotateAmount += 0.08;
       leftWallHit = true;
-    }
     else
       leftWallHit = false;
     
