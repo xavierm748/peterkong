@@ -16,7 +16,7 @@ class Peter
 
   public Peter()
   {
-    //setting initial values ot every variable
+    //setting initial values of every variable
     peterX = width-100;
     peterY = height-100;
     peterXspd = 0;
