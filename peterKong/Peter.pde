@@ -1,9 +1,30 @@
+class Peter
+{
+  public float peterX, peterY;
+  public float peterSize;
+  public float peterXspd, peterYspd;
+  public float health;
+  public boolean hasHealth;
+  public int jumpCounter;
+  PImage peter;
+  boolean jumped;
+  boolean moveLeft;
+  boolean moveDown;
+  boolean moveRight;
+  boolean goingUp;
+  boolean peterOnLadder;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   public Peter()
   {
     //setting initial values ot every variable
+=======
+  public Peter()
+  {
+    //setting initial values of every variable
+>>>>>>> parent of 123e742 (yes)
     peterX = width-100;
     peterY = height-100;
     peterXspd = 0;
@@ -131,4 +152,7 @@
   public float left()  { return peterX-peterSize/2; }
   public float right() { return peterX+peterSize/2; }
 }
+<<<<<<< HEAD
 >>>>>>> parent of 6ebe0bd (Update Peter.pde)
+=======
+>>>>>>> parent of 123e742 (yes)
